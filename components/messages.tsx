@@ -1,11 +1,9 @@
-"use cient";
-
-import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Messages = () => {
 	return (
-		<div>
+		<Link href="/">
 			<Image
 				src="/message.svg"
 				alt="Messages"
@@ -13,7 +11,7 @@ const Messages = () => {
 				width={26}
 				height={26}
 			/>
-		</div>
+		</Link>
 	);
 };
 
