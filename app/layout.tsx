@@ -1,6 +1,7 @@
-import "./globals.css";
-import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import type { Metadata } from "next";
+import "./globals.css";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
@@ -15,8 +16,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body className={montserrat.className}>{children}</body>
-		</html>
+		<ClerkProvider>
+			<html lang="en">
+				<body className={montserrat.className}>{children}</body>
+			</html>
+		</ClerkProvider>
 	);
 }

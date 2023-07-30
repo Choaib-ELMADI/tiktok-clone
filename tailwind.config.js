@@ -19,10 +19,14 @@ module.exports = {
 			colors: {
 				brand_1: "var(--brand_1)",
 				brand_1_trs: "var(--brand_1_trs)",
+
+				gray_clr: "var(--gray)",
 				light_gray: "var(--light_gray)",
 				dark_gray: "var(--dark_gray)",
-				gray_clr: "var(--gray)",
+				gray_clr_trs: "var(--gray_trs)",
+
 				white_clr: "var(--white)",
+				light_white: "var(--light_white)",
 
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",

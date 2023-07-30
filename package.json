@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.23.1",
+    "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",

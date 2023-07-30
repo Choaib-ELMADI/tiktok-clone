@@ -15,7 +15,8 @@ const buttonVariants = cva(
 				outline:
 					"border bg-transparent text-brand_1 hover:bg-brand_1_trs border-brand_1 rounded-[4px]",
 
-				secondary: "bg-dark_gray text-white hover:bg-light_gray rounded-[4px]",
+				secondary:
+					"bg-dark_gray text-white_clr hover:bg-light_gray rounded-[4px]",
 
 				destructive: "bg-brand_1 text-white_clr hover:bg-[#e72545]",
 			},
