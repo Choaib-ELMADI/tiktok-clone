@@ -12,7 +12,7 @@ const UserMenu = async () => {
 
 	return (
 		<div className="flex items-center gap-5">
-			<Link href="/">
+			<Link href="/upload">
 				<Button variant="secondary">
 					<Image
 						src="/add.svg"
@@ -33,7 +33,9 @@ const UserMenu = async () => {
 			) : (
 				<>
 					<Link href="/sign-up">
-						<Button variant="outline">Sign Up</Button>
+						<Button variant="outline" size="lg">
+							Sign Up
+						</Button>
 					</Link>
 				</>
 			)}
