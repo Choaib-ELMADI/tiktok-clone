@@ -45,17 +45,18 @@ const SidebarLinks = () => {
 				>
 					<link.icon />
 					<h1 className="hidden text-[1rem] md:block relative">{link.label}</h1>
-					{link.label.toLowerCase() === "explore" && (
-						<>
-							<Badge
-								variant="outline"
-								className="border-brand_1 bg-brand_1 text-white hidden md:block"
-							>
-								New
-							</Badge>
-							<span className="block md:hidden w-[.35rem] h-[.35rem] rounded-full bg-brand_1 absolute translate-x-7 -translate-y-3" />
-						</>
-					)}
+					{pathname !== "/explore" &&
+						link.label.toLowerCase() === "explore" && (
+							<>
+								<Badge
+									variant="outline"
+									className="border-brand_1 bg-brand_1 text-white hidden md:block"
+								>
+									New
+								</Badge>
+								<span className="block md:hidden w-[.35rem] h-[.35rem] rounded-full bg-brand_1 absolute translate-x-7 -translate-y-3" />
+							</>
+						)}
 				</Link>
 			))}
 		</>
