@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import MainLogo from "@/components/main-logo";
-
 const links = [
 	{
 		title: "Company",

@@ -23,7 +23,7 @@ const UserProfile = async () => {
 			<DropdownMenuTrigger asChild>
 				<Avatar className="w-[32px] h-[32px] cursor-pointer">
 					<AvatarImage src={user.profileImageUrl} />
-					<AvatarFallback className="bg-dark_gray text-white_clr">
+					<AvatarFallback className="bg-light_gray text-white">
 						{user.firstName?.charAt(0).toUpperCase()}
 						{user.lastName?.charAt(0).toUpperCase()}
 					</AvatarFallback>
