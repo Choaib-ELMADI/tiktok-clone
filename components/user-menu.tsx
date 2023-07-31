@@ -13,7 +13,7 @@ const UserMenu = async () => {
 	return (
 		<div className="flex items-center gap-5">
 			<Link href="/upload">
-				<Button variant="secondary">
+				<Button variant="secondary" className="bg-[#86878d] dark:bg-light_gray">
 					<Image
 						src="/add.svg"
 						alt="Upload"
@@ -21,7 +21,7 @@ const UserMenu = async () => {
 						width={20}
 						height={20}
 					/>
-					<p className="text-[.9rem] ml-2">Upload</p>
+					<p className="text-[.9rem] ml-2 text-white">Upload</p>
 				</Button>
 			</Link>
 			{user ? (

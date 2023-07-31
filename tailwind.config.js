@@ -18,49 +18,24 @@ module.exports = {
 		extend: {
 			colors: {
 				brand_1: "var(--brand_1)",
+				brand_2: "var(--brand_2)",
 				brand_1_trs: "var(--brand_1_trs)",
+				brand_2_trs: "var(--brand_2_trs)",
 
-				gray_clr: "var(--gray)",
+				background: "var(--background)",
+				text: "var(--text)",
+				secondary: "var(--secondary)",
+
+				black: "var(--black)",
+				white: "var(--white)",
+				light_white: "var(--light_white)",
+				gray: "var(--gray)",
 				light_gray: "var(--light_gray)",
 				dark_gray: "var(--dark_gray)",
-				gray_clr_trs: "var(--gray_trs)",
+				gray_trs: "var(--gray_trs)",
 
-				white_clr: "var(--white)",
-				light_white: "var(--light_white)",
-
-				border: "hsl(var(--border))",
-				input: "hsl(var(--input))",
-				ring: "hsl(var(--ring))",
-				background: "hsl(var(--background))",
-				foreground: "hsl(var(--foreground))",
-				primary: {
-					DEFAULT: "hsl(var(--primary))",
-					foreground: "hsl(var(--primary-foreground))",
-				},
-				secondary: {
-					DEFAULT: "hsl(var(--secondary))",
-					foreground: "hsl(var(--secondary-foreground))",
-				},
-				destructive: {
-					DEFAULT: "hsl(var(--destructive))",
-					foreground: "hsl(var(--destructive-foreground))",
-				},
-				muted: {
-					DEFAULT: "hsl(var(--muted))",
-					foreground: "hsl(var(--muted-foreground))",
-				},
-				accent: {
-					DEFAULT: "hsl(var(--accent))",
-					foreground: "hsl(var(--accent-foreground))",
-				},
-				popover: {
-					DEFAULT: "hsl(var(--popover))",
-					foreground: "hsl(var(--popover-foreground))",
-				},
-				card: {
-					DEFAULT: "hsl(var(--card))",
-					foreground: "hsl(var(--card-foreground))",
-				},
+				radius: "var(--radius)",
+				border: "var(--border)",
 			},
 			borderRadius: {
 				lg: "var(--radius)",
