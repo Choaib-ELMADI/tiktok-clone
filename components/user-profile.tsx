@@ -53,11 +53,11 @@ const UserProfile = async () => {
 					</DropdownMenuItem>
 
 					<DropdownMenuItem>
-						<Link href="/" className="flex items-center py-1 w-full">
+						<div className="flex items-center py-1 w-full">
 							<Moon className="mr-3 h-5 w-5" />
 							<span className="text-[.95rem]">Dark mode</span>
 							<SwitchTheme />
-						</Link>
+						</div>
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 

@@ -8,7 +8,7 @@ const MainLogo = () => {
 	const { resolvedTheme } = useTheme();
 
 	return (
-		<Link href="/" className="flex items-center gap-1">
+		<Link href="/" className="flex items-center">
 			<Image
 				src={
 					resolvedTheme === "dark"

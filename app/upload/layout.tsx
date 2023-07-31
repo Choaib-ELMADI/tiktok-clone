@@ -1,8 +1,10 @@
-import Navbar from "@/components/navbar";
 import { Metadata } from "next";
 
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+
 export const metadata: Metadata = {
-	title: "Upload | TikLok",
+	title: "Upload - TikLok",
 };
 
 export default function UploadLayout({
@@ -11,10 +13,10 @@ export default function UploadLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<main>
+		<main className="pt-16 h-screen flex flex-col">
 			<Navbar />
 			{children}
-			<h1>Footer</h1>
+			<Footer />
 		</main>
 	);
 }
