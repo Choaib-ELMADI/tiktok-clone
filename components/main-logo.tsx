@@ -4,14 +4,20 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 
-const MainLogo = () => {
+interface MainLogoProps {
+	mode?: string;
+}
+
+const MainLogo = ({ mode }: MainLogoProps) => {
 	const { resolvedTheme } = useTheme();
 
 	return (
 		<Link href="/" className="flex items-center">
 			<Image
 				src={
-					resolvedTheme === "dark"
+					mode
+						? "/main-logo-white.svg"
+						: resolvedTheme === "dark"
 						? "/main-logo-white.svg"
 						: "/main-logo-black.svg"
 				}
