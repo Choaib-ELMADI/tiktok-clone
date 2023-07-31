@@ -10,7 +10,7 @@ const Sidebar = async () => {
 	const user = await currentUser();
 
 	return (
-		<div className="fixed top-[60px] left-0 md:w-[240px] h-full overflow-auto py-4 px-2 pr-0 pb-[80px]">
+		<div className="fixed top-[60px] left-0 md:w-[240px] h-full overflow-auto show-scrollbar py-4 px-2 pr-0 pb-[80px]">
 			<SidebarLinks />
 			{user ? (
 				<FollowingAccounts />

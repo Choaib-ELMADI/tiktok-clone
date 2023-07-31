@@ -53,6 +53,14 @@
 	}
 }
 
+@layer utilities {
+	@variants responsive {
+		.show-scrollbar:hover::-webkit-scrollbar-thumb {
+			background: rgba(80, 81, 79, 0.5);
+		}
+	}
+}
+
 * {
 	padding: 0;
 	margin: 0;
@@ -62,12 +70,10 @@
 ::-webkit-scrollbar {
 	height: 5px;
 	width: 5px;
-	/* width: 0;
-	height: 0; */
 	background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: rgba(80, 81, 79, 0.5);
+	background: transparent;
 	border-radius: 10px;
 }

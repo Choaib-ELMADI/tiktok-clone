@@ -2,6 +2,16 @@ import { LogOut, Moon, Star, Store, User } from "lucide-react";
 import { SignOutButton, currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SwitchTheme from "./switch-theme";
 import {
@@ -12,6 +22,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "./ui/button";
 
 const UserProfile = async () => {
 	const user = await currentUser();
@@ -64,10 +75,28 @@ const UserProfile = async () => {
 				<DropdownMenuSeparator className="bg-text mx-2" />
 
 				<DropdownMenuItem className="py-2">
-					<LogOut className="mr-3 h-5 w-5" />
-					<span className="text-[.95rem] cursor-pointer">
-						<SignOutButton />
-					</span>
+					<AlertDialog>
+						<AlertDialogTrigger className="flex items-center py-1 w-full">
+							<LogOut className="mr-3 h-5 w-5" />
+							<span className="text-[.95rem] cursor-pointer">Sign out</span>
+						</AlertDialogTrigger>
+
+						<AlertDialogContent className="w-[calc(100%-2rem)] rounded-lg">
+							<AlertDialogHeader>
+								<AlertDialogTitle className="text-xl lg:text-2xl text-center">
+									Are you sure you want to sign out?
+								</AlertDialogTitle>
+							</AlertDialogHeader>
+							<AlertDialogFooter className="grid grid-cols-2 gap-2 md:gap-0">
+								<AlertDialogCancel className="text-white">
+									Cancel
+								</AlertDialogCancel>
+								<AlertDialogAction>
+									<SignOutButton />
+								</AlertDialogAction>
+							</AlertDialogFooter>
+						</AlertDialogContent>
+					</AlertDialog>
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

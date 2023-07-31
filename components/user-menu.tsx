@@ -19,7 +19,7 @@ const UserMenu = async () => {
 	const user = await currentUser();
 
 	return (
-		<div className="flex items-center gap-5">
+		<div className="flex items-center gap-2 md:gap-5">
 			<Link href="/upload">
 				<Button
 					variant="secondary"
