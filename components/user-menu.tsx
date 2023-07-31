@@ -13,7 +13,10 @@ const UserMenu = async () => {
 	return (
 		<div className="flex items-center gap-5">
 			<Link href="/upload">
-				<Button variant="secondary" className="bg-[#86878d] dark:bg-light_gray">
+				<Button
+					variant="secondary"
+					className="bg-[#86878d] dark:bg-light_gray hover:bg-[#86878d] dark:hover:bg-light_gray"
+				>
 					<Image
 						src="/add.svg"
 						alt="Upload"
