@@ -1,6 +1,6 @@
 export default function UploadPage() {
 	return (
-		<div className="bg-text text-background h-full">
+		<div className="bg-white text-black h-full">
 			<h1>Upload Page</h1>
 		</div>
 	);
