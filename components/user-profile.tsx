@@ -29,7 +29,7 @@ const UserProfile = async () => {
 					</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent className="w-60 mt-[10px] -translate-x-4">
+			<DropdownMenuContent className="w-60 mt-[12px] -translate-x-4">
 				<DropdownMenuGroup>
 					<DropdownMenuItem>
 						<Link href="/" className="flex items-center py-1 w-full">
@@ -61,9 +61,9 @@ const UserProfile = async () => {
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 
-				<DropdownMenuSeparator />
+				<DropdownMenuSeparator className="bg-text mx-2" />
 
-				<DropdownMenuItem>
+				<DropdownMenuItem className="py-2">
 					<LogOut className="mr-3 h-5 w-5" />
 					<span className="text-[.95rem] cursor-pointer">
 						<SignOutButton />
