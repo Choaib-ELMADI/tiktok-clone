@@ -110,8 +110,3 @@
 	background: #50514f;
 	border-radius: 10px;
 }
-
-body {
-	background: var(--black);
-	color: var(--white);
-}

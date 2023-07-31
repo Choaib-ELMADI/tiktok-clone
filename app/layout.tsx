@@ -1,9 +1,10 @@
-import { Montserrat } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
-import type { Metadata } from "next";
-import "./globals.css";
-
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
+import { ClerkProvider } from "@clerk/nextjs";
+import { Montserrat } from "next/font/google";
+import type { Metadata } from "next";
+
+import Providers from "./providers";
+import "./globals.css";
 
 export const metadata: Metadata = {
 	title: "TikLok - Make Your Day",
@@ -16,10 +17,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<ClerkProvider>
-			<html lang="en">
-				<body className={montserrat.className}>{children}</body>
-			</html>
-		</ClerkProvider>
+		<html lang="en" className="dark" style={{ colorScheme: "dark" }}>
+			<ClerkProvider>
+				<body className={montserrat.className}>
+					<Providers>{children}</Providers>
+				</body>
+			</ClerkProvider>
+		</html>
 	);
 }

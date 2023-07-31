@@ -3,7 +3,7 @@ import { SignOutButton, currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Switch } from "@/components/ui/switch";
+import SwitchTheme from "./switch-theme";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -56,9 +56,7 @@ const UserProfile = async () => {
 						<Link href="/" className="flex items-center py-1 w-full">
 							<Moon className="mr-3 h-5 w-5" />
 							<span className="text-[.95rem]">Dark mode</span>
-							<div className="ml-auto">
-								<Switch id="dark-light-mode" />
-							</div>
+							<SwitchTheme />
 						</Link>
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
