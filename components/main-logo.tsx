@@ -19,6 +19,7 @@ const MainLogo = () => {
 				draggable="false"
 				width={118}
 				height={43}
+				className="w-[118px] h-[43px]"
 			/>
 		</Link>
 	);

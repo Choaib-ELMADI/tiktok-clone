@@ -46,7 +46,7 @@ const links = [
 
 const Footer = () => {
 	return (
-		<div className="w-full max-w-[1100px] mx-auto mt-auto p-8 lg:p-4">
+		<div className="w-full max-w-[1100px] mx-auto mt-auto p-8 lg:p-4 lg:pt-8">
 			<div className="mb-8 grid grid-cols-1 lg:grid-cols-5 gap-8 items-start justify-items-center lg:justify-items-start">
 				<MainLogo />
 				{links.map((item) => (

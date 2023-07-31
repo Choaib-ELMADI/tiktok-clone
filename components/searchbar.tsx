@@ -7,7 +7,7 @@ const SearchBar = () => {
 	const [query, setQuery] = useState("");
 
 	return (
-		<div className="group hidden overflow-hidden md:flex items-center bg-secondary w-full max-w-[510px] rounded-full border border-transparent hover:border-gray focus-within:border-gray transition">
+		<div className="group hidden overflow-hidden md:flex items-center bg-secondary w-full flex-[.5] max-w-[510px] rounded-full border border-transparent hover:border-gray focus-within:border-gray transition">
 			<input
 				type="text"
 				name="search"

@@ -13,7 +13,7 @@ export default function UploadLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<main className="pt-16 h-screen flex flex-col">
+		<main className="pt-[60px] h-screen flex flex-col">
 			<Navbar />
 			{children}
 			<Footer />
