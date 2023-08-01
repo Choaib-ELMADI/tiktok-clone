@@ -15,7 +15,7 @@ const FollowingAccounts = async () => {
 	const user = await currentUser();
 
 	return (
-		<div className="flex flex-col items-center md:items-start mt-4 pt-4 border-t border-border">
+		<div className="hidden xs:flex flex-col items-center md:items-start mt-4 pt-4 border-t border-border">
 			<h1 className="text-[.85rem] dark:text-light_white mb-4 hidden md:block">
 				Following accounts
 			</h1>

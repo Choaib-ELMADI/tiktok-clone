@@ -19,8 +19,8 @@ const UserMenu = async () => {
 	const user = await currentUser();
 
 	return (
-		<div className="flex items-center gap-2 md:gap-5">
-			<Link href="/upload">
+		<div className="flex items-center gap-4">
+			<Link href="/upload" className="hidden xs:block">
 				<Button
 					variant="secondary"
 					className="bg-[#86878d] dark:bg-light_gray hover:bg-[#86878d] dark:hover:bg-light_gray"

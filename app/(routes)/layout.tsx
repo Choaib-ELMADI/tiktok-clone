@@ -7,10 +7,10 @@ export default function RoutesLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<main className="pl-[80px] md:pl-[250px] pt-[70px]">
+		<main className="pl-0 xs:pl-[80px] md:pl-[245px] pt-[60px] xs:mr-4">
 			<Navbar />
 			<Sidebar />
-			<div className="bg-red-500">{children}</div>
+			<div className="pb-[67px] xs:pb-0">{children}</div>
 		</main>
 	);
 }

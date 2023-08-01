@@ -10,12 +10,12 @@ const Sidebar = async () => {
 	const user = await currentUser();
 
 	return (
-		<div className="fixed top-[60px] left-0 md:w-[240px] h-full overflow-auto show-scrollbar py-4 px-2 pr-0 pb-[80px]">
+		<div className="fixed bottom-0 top-[calc(100% - 100px)] flex justify-between flex-row xs:flex-col xs:top-[60px] left-0 w-full xs:w-max md:w-[240px] h-max xs:h-full overflow-auto show-scrollbar p-0 xs:py-4 xs:px-2 xs:pr-0 xs:pb-[80px] bg-light_white dark:bg-dark_gray xs:bg-transparent xs:dark:bg-transparent">
 			<SidebarLinks />
 			{user ? (
 				<FollowingAccounts />
 			) : (
-				<div className="pr-1 border-t border-border my-4 pt-4 hidden md:block">
+				<div className="pr-1 border-t border-border my-4 pt-4 hidden xs:block">
 					<h1 className="text-[.9rem] dark:text-light_white mb-4">
 						Sign up to follow creators, like videos, and view comments.
 					</h1>

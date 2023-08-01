@@ -1,6 +1,6 @@
 "use client";
 
-import { Compass, Home, Users, Video } from "lucide-react";
+import { Compass, Home, User, Users, Video } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -39,12 +39,14 @@ const SidebarLinks = () => {
 					href={link.href}
 					key={link.label}
 					className={cn(
-						"flex items-center gap-4 px-4 py-3 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
+						"flex flex-col xs:flex-row items-center gap-1 xs:gap-4 px-4 py-3 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
 						pathname === link.href ? "text-brand_1" : ""
 					)}
 				>
 					<link.icon />
-					<h1 className="hidden text-[1rem] md:block relative">{link.label}</h1>
+					<h1 className="block xs:hidden text-[.65rem] xs:text-[1rem] md:block relative">
+						{link.label}
+					</h1>
 					{pathname !== "/explore" &&
 						link.label.toLowerCase() === "explore" && (
 							<>
@@ -54,11 +56,23 @@ const SidebarLinks = () => {
 								>
 									New
 								</Badge>
-								<span className="block md:hidden w-[.35rem] h-[.35rem] rounded-full bg-brand_1 absolute translate-x-7 -translate-y-3" />
+								<span className="hidden xs:block md:hidden w-[.35rem] h-[.35rem] rounded-full bg-brand_1 absolute translate-x-7 -translate-y-3" />
 							</>
 						)}
 				</Link>
 			))}
+			<Link
+				href="/"
+				className={cn(
+					"flex flex-col xs:flex-row items-center gap-1 xs:gap-4 px-4 py-3 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
+					"flex xs:hidden"
+				)}
+			>
+				<User />
+				<h1 className="block xs:hidden text-[.65rem] xs:text-[1rem] md:block relative">
+					Profile
+				</h1>
+			</Link>
 		</>
 	);
 };
