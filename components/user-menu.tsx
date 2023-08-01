@@ -1,4 +1,4 @@
-import { Moon, MoreVertical } from "lucide-react";
+import { Moon, MoreVertical, Plus } from "lucide-react";
 import { currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -50,9 +50,15 @@ const UserMenu = async () => {
 					</Link>
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild className="cursor-pointer">
-							<MoreVertical />
+							<MoreVertical className="text-text" />
 						</DropdownMenuTrigger>
 						<DropdownMenuContent className="w-60 mt-[12px] -translate-x-4">
+							<DropdownMenuItem className="block xs:hidden">
+								<Link href="/upload" className="flex items-center py-[.35rem]">
+									<Plus className="mr-3 h-5 w-5" />
+									<span className="text-[.95rem]">Upload</span>
+								</Link>
+							</DropdownMenuItem>
 							<DropdownMenuItem>
 								<div className="flex items-center py-1 w-full">
 									<Moon className="mr-3 h-5 w-5" />

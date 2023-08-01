@@ -1,7 +1,9 @@
 "use client";
 
+const montserrat = Montserrat({ weight: "700", subsets: ["latin"] });
 import { Compass, Home, User, Users, Video } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { Montserrat } from "next/font/google";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -40,7 +42,9 @@ const SidebarLinks = () => {
 					key={link.label}
 					className={cn(
 						"flex flex-col xs:flex-row items-center gap-1 xs:gap-4 px-4 py-3 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
-						pathname === link.href ? "text-brand_1" : ""
+						montserrat.className,
+						pathname === link.href ? "text-brand_1" : "",
+						link.href === "/live" ? "uppercase" : ""
 					)}
 				>
 					<link.icon />

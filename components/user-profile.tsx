@@ -1,4 +1,4 @@
-import { LogOut, Moon, Star, Store, User } from "lucide-react";
+import { LogOut, Moon, Plus, Star, Store, User } from "lucide-react";
 import { SignOutButton, currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -22,7 +22,6 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "./ui/button";
 
 const UserProfile = async () => {
 	const user = await currentUser();
@@ -46,6 +45,13 @@ const UserProfile = async () => {
 						<Link href="/" className="flex items-center py-1 w-full">
 							<User className="mr-3 h-5 w-5" />
 							<span className="text-[.95rem]">View Profile</span>
+						</Link>
+					</DropdownMenuItem>
+
+					<DropdownMenuItem className="block xs:hidden">
+						<Link href="/upload" className="flex items-center py-[.35rem]">
+							<Plus className="mr-3 h-5 w-5" />
+							<span className="text-[.95rem]">Upload</span>
 						</Link>
 					</DropdownMenuItem>
 
