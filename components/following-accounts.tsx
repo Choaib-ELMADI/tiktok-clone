@@ -4,11 +4,11 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const followingAccounts = [
-	{ name: "choaibelmadi" },
-	{ name: "elmadichoaib" },
-	{ name: "choaib_elmadi" },
-	{ name: "git_code" },
-	{ name: "dot_algo" },
+	{ name: "choaibelmadi", href: "/@choaibelmadi" },
+	{ name: "elmadichoaib", href: "/@elmadichoaib" },
+	{ name: "choaib_elmadi", href: "/@choaib_elmadi" },
+	{ name: "git_code", href: "/@git_code" },
+	{ name: "dot_algo", href: "/@dot_algo" },
 ];
 
 const FollowingAccounts = async () => {
@@ -21,7 +21,7 @@ const FollowingAccounts = async () => {
 			</h1>
 			{followingAccounts.map((account) => (
 				<Link
-					href="/"
+					href={account.href}
 					key={account.name}
 					className="flex items-center gap-2 p-2 w-max md:w-full md:px-2 md:py-1 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition"
 				>
@@ -35,7 +35,7 @@ const FollowingAccounts = async () => {
 					<div className="hidden md:flex flex-col">
 						<h1 className="text-sm">{account.name}</h1>
 						<h1 className="text-[.8rem] dark:text-light_white opacity-80">
-							{account.name}
+							@{account.name}
 						</h1>
 					</div>
 				</Link>
