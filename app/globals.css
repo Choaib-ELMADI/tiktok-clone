@@ -6,8 +6,8 @@
 	:root {
 		--brand_1: #f94664;
 		--brand_2: #67b9e9;
-		--brand_1_trs: #ff3b5c33;
-		--brand_2_trs: #67b9e933;
+		--brand_1_trs: rgba(255, 59, 92, 0.4);
+		--brand_2_trs: rgba(103, 185, 233, 0.4);
 
 		--black: #121212;
 		--white: #e9e9e9;
@@ -28,8 +28,8 @@
 	.dark {
 		--brand_1: #f94664;
 		--brand_2: #67b9e9;
-		--brand_1_trs: #ff3b5c33;
-		--brand_2_trs: #67b9e933;
+		--brand_1_trs: rgba(255, 59, 92, 0.4);
+		--brand_2_trs: rgba(103, 185, 233, 0.4);
 
 		--black: #121212;
 		--white: #e9e9e9;
