@@ -1,4 +1,4 @@
-const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
+const montserrat = Montserrat({ weight: "500", subsets: ["latin"] });
 import { ClerkProvider } from "@clerk/nextjs";
 import { Montserrat } from "next/font/google";
 import type { Metadata } from "next";

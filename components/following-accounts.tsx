@@ -4,7 +4,10 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const followingAccounts = [
-	{ name: "choaibelmadi", href: "/@choaibelmadi" },
+	{
+		name: "mistre_choaibelmadi_official",
+		href: "/@mistre_choaibelmadi_official",
+	},
 	{ name: "elmadichoaib", href: "/@elmadichoaib" },
 	{ name: "choaib_elmadi", href: "/@choaib_elmadi" },
 	{ name: "git_code", href: "/@git_code" },
@@ -33,8 +36,10 @@ const FollowingAccounts = async () => {
 						</AvatarFallback>
 					</Avatar>
 					<div className="hidden md:flex flex-col">
-						<h1 className="text-sm">{account.name}</h1>
-						<h1 className="text-[.8rem] dark:text-light_white opacity-80">
+						<h1 className="w-[175px] text-sm overflow-hidden truncate">
+							{account.name}
+						</h1>
+						<h1 className="w-[175px] text-[.8rem] dark:text-light_white opacity-80 overflow-hidden truncate">
 							@{account.name}
 						</h1>
 					</div>
