@@ -7,7 +7,7 @@ export default function UploadLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<main className="pt-[60px] h-screen flex flex-col bg-white text-black">
+		<main className="pt-[60px] flex flex-col bg-white text-black">
 			<Navbar />
 			{children}
 			<Footer />

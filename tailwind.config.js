@@ -9,6 +9,7 @@ module.exports = {
 	],
 	theme: {
 		screens: {
+			xxs: "281px",
 			xs: "501px",
 			sm: "640px",
 			md: "768px",
@@ -36,6 +37,7 @@ module.exports = {
 
 				black: "var(--black)",
 				white: "var(--white)",
+				white_trs: "var(--white_trs)",
 				light_white: "var(--light_white)",
 				gray: "var(--gray)",
 				light_gray: "var(--light_gray)",
