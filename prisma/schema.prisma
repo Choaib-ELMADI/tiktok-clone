@@ -8,14 +8,15 @@ datasource db {
 }
 
 model Video {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  description String
-  likes       Int
-  owner       String
-  saves       Int
-  tags        String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  caption   String
+  likes     Int
+  owner     String
+  saves     Int
+  hashtags  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  source    String
 
   @@map("videos")
 }
