@@ -5,6 +5,7 @@ import { useDropzone } from "react-dropzone";
 import { useRouter } from "next/navigation";
 import { UploadCloud } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
+import { toast } from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -83,12 +84,14 @@ export default function UploadComponent({
 		setLoading(true);
 
 		if (!video || !user?.primaryEmailAddressId) {
+			toast.error("An error occured");
 			setLoading(false);
 			return;
 		}
 
 		await publishVideo(video, videoData, user.primaryEmailAddressId);
 
+		toast.success("Video uploaded");
 		setLoading(false);
 		setVideoData({ caption: "", hashtags: "" });
 		setVideo("");

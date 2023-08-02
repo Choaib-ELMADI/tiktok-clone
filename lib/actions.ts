@@ -29,8 +29,12 @@ export const publishVideo = async (
 
 	const videoDataSource = await uploadVideo(video);
 
-	if (!videoDataSource || !userEmailId) {
-		throw Error("Missing required data");
+	if (!userEmailId) {
+		throw Error("Unauthorized action");
+	}
+
+	if (!videoDataSource || !videoDataSource?.secure_url) {
+		throw Error("Messing required data");
 	}
 
 	await prisma.video.create({
