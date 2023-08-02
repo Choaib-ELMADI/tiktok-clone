@@ -1,7 +1,10 @@
 import { LogOut, Moon, Plus, Star, Store, User } from "lucide-react";
-import { SignOutButton, currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import SignOutButton from "@/components/sign-out-button";
+import SwitchTheme from "./switch-theme";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -12,8 +15,6 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import SwitchTheme from "./switch-theme";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
