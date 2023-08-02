@@ -21,7 +21,9 @@ export default function UploadComponent({
 		userEmailId: string
 	) => {};
 }) {
-	const onDrop = useCallback((acceptedFiles: any) => {
+	const onDrop = useCallback((acceptedFiles: File[]) => {
+		if (!user) router.push("/sign-up");
+
 		if (loading) return;
 
 		const file = acceptedFiles?.[0];
@@ -57,6 +59,8 @@ export default function UploadComponent({
 	}, [video]);
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		if (!user) router.push("/sign-up");
+
 		if (loading) return;
 
 		const file = e.target.files?.[0];
@@ -83,7 +87,7 @@ export default function UploadComponent({
 	const handleAddVideo = async () => {
 		setLoading(true);
 
-		if (!video || !user?.primaryEmailAddressId) {
+		if (!video || !user || !user?.primaryEmailAddressId) {
 			toast.error("An error occured");
 			setLoading(false);
 			return;
@@ -101,8 +105,7 @@ export default function UploadComponent({
 		<div className="my-8">
 			<div className="py-12 px-4 md:px-12 text-center max-w-[1600px] mx-auto">
 				<div className="bg-[#fff] shadow-xl p-2 xs:p-6 md:p-12 w-full rounded-lg">
-					<label
-						htmlFor="video"
+					<span
 						className="flex flex-col items-center gap-2 p-4 md:p-8 border-2 border-dashed border-light_white w-full rounded-lg cursor-pointer hover:bg-white_trs transition"
 						{...getRootProps()}
 					>
@@ -131,7 +134,7 @@ export default function UploadComponent({
 						>
 							Select files
 						</Button>
-					</label>
+					</span>
 					<input
 						type="file"
 						name="video"
