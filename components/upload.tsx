@@ -8,7 +8,7 @@ import { useUser } from "@clerk/nextjs";
 import { toast } from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { UserProps, cn } from "@/lib/utils";
 const CAPTION_MAX_LENGTH = 300;
 const MAX_HASHTAGS = 20;
 
@@ -18,12 +18,10 @@ export default function UploadComponent({
 	publishVideo: (
 		video: string,
 		videoData: { caption: string; hashtags: string },
-		userEmailId: string
+		user: UserProps
 	) => {};
 }) {
 	const onDrop = useCallback((acceptedFiles: File[]) => {
-		if (!user) router.push("/sign-up");
-
 		if (loading) return;
 
 		const file = acceptedFiles?.[0];
@@ -59,8 +57,6 @@ export default function UploadComponent({
 	}, [video]);
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		if (!user) router.push("/sign-up");
-
 		if (loading) return;
 
 		const file = e.target.files?.[0];
@@ -87,13 +83,20 @@ export default function UploadComponent({
 	const handleAddVideo = async () => {
 		setLoading(true);
 
-		if (!video || !user || !user?.primaryEmailAddressId) {
-			toast.error("An error occured");
+		if (!video || !user) {
+			toast.error("Video and User are required");
 			setLoading(false);
 			return;
 		}
 
-		await publishVideo(video, videoData, user.primaryEmailAddressId);
+		await publishVideo(video, videoData, {
+			userEmailAddress: user?.emailAddresses[0].emailAddress,
+			userId: user?.id,
+			userFirstName: user?.firstName,
+			userLastName: user?.lastName,
+			userProfileImageUrl: user?.profileImageUrl,
+			userLink: user?.emailAddresses[0].emailAddress.split("@")[0],
+		});
 
 		toast.success("Video uploaded");
 		setLoading(false);
@@ -157,7 +160,13 @@ export default function UploadComponent({
 					<div className="flex flex-col md:flex-row gap-4 mt-4">
 						<div className="w-full xxs:w-[280px] h-[500px] bg-gray_trs rounded-md overflow-hidden flex flex-col items-center justify-center">
 							{video ? (
-								<video className="w-full" controls muted>
+								<video
+									className="w-full hide-controls video-preview"
+									disablePictureInPicture
+									controlsList="nodownload noplaybackrate"
+									controls
+									muted
+								>
 									<source src={video} />
 								</video>
 							) : (

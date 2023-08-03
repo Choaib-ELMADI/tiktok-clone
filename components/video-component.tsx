@@ -1,4 +1,4 @@
-import { Heart, MessageCircle, Save, Send } from "lucide-react";
+import { Heart, MessageCircle, Music, Save, Send } from "lucide-react";
 import { Video } from "@prisma/client";
 import Link from "next/link";
 
@@ -13,20 +13,26 @@ const Video = ({ video }: VideoProps) => {
 	return (
 		<div className="pb-4 border-b border-border max-w-[700px] w-full">
 			<div className="flex gap-2 mb-3">
-				<Link href="/">
+				<Link href={`@${video.userLink}`}>
 					<Avatar className="bg-text text-background w-[52px] h-[52px]">
-						<AvatarImage />
-						<AvatarFallback>CE</AvatarFallback>
+						<AvatarImage src={video.userProfileImageUrl} />
+						<AvatarFallback>
+							{video.userName.split(" ")[0].charAt(0).toUpperCase()}
+							{video.userName.split(" ")[1].charAt(0).toUpperCase()}
+						</AvatarFallback>
 					</Avatar>
 				</Link>
-				<div className="flex flex-col gap-[2px]">
-					<Link href="/" className="hover:underline font-semibold">
-						{video.id}
+				<div className="flex flex-col">
+					<Link
+						href={`@${video.userLink}`}
+						className="hover:underline font-semibold"
+					>
+						{video.userLink}
 					</Link>
-					<h3 className="text-sm dark:text-light_white text-light_gray">
-						{video.owner}
+					<h3 className="text-sm w-max rounded-full py-[2px] px-[6px] bg-light_white text-light_gray dark:text-light_white dark:bg-light_gray">
+						{video.userName}
 					</h3>
-					<p className="text-sm">
+					<p className="text-sm my-[3px]">
 						{video.caption}{" "}
 						{video.hashtags
 							.split("#")
@@ -41,6 +47,11 @@ const Video = ({ video }: VideoProps) => {
 								</Link>
 							))}
 					</p>
+					<div className="flex items-center text-sm gap-[4px]">
+						<Music className="w-4 h-4" />
+						<span>Original sound - </span>
+						<span>{video.userLink}</span>
+					</div>
 				</div>
 				<Button variant="outline" size="lg" className="ml-auto">
 					Follow
