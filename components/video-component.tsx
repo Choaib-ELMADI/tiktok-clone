@@ -11,7 +11,7 @@ interface VideoProps {
 
 const Video = ({ video }: VideoProps) => {
 	return (
-		<div className="pb-4 border-b border-border max-w-[700px] w-full">
+		<div className="pb-4 border-b border-border max-w-[700px] w-full overflow-hidden">
 			<div className="flex gap-2 mb-3">
 				<Link href={`@${video.userLink}`}>
 					<Avatar className="bg-text text-background w-[52px] h-[52px]">

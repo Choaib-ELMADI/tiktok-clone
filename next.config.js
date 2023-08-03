@@ -4,6 +4,14 @@ const nextConfig = {
 		serverActions: true,
 		serverActionsBodySizeLimit: "10mb",
 	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "res.cloudinary.com",
+			},
+		],
+	},
 };
 
 module.exports = nextConfig;

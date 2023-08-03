@@ -6,17 +6,16 @@ const serverUrl = isProduction
 	? process.env.NEXT_PUBLIC_SERVER_URL
 	: "http://localhost:3000";
 
-export const uploadVideo = async (videoPath: string) => {
-	"use server";
-
+const uploadVideo = async (videoPath: string) => {
 	try {
 		console.log("___START__");
 
-		const response = await fetch(`${serverUrl}/api/upload`, {
+		const response = await fetch(`http://localhost:3000/api/upload`, {
 			method: "POST",
 			body: JSON.stringify({ path: videoPath }),
 		});
 
+		console.log(response);
 		console.log("___END__");
 		return response.json();
 	} catch (error) {
