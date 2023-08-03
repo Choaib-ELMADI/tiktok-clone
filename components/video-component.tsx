@@ -19,11 +19,13 @@ const Video = ({ video }: VideoProps) => {
 						<AvatarFallback>CE</AvatarFallback>
 					</Avatar>
 				</Link>
-				<div className="flex flex-col">
-					<Link href="/" className="hover:underline">
+				<div className="flex flex-col gap-[2px]">
+					<Link href="/" className="hover:underline font-semibold">
 						{video.id}
 					</Link>
-					<h3 className="text-sm text-light_gray mb-1">{video.owner}</h3>
+					<h3 className="text-sm dark:text-light_white text-light_gray">
+						{video.owner}
+					</h3>
 					<p className="text-sm">
 						{video.caption}{" "}
 						{video.hashtags
@@ -33,7 +35,7 @@ const Video = ({ video }: VideoProps) => {
 								<Link
 									href="/"
 									key={`hash-${i}`}
-									className="text-brand_2 hover:underline ml-[4px]"
+									className="text-blue-500 dark:text-brand_2 hover:underline ml-[4px] font-semibold"
 								>
 									#{hash}
 								</Link>
@@ -45,12 +47,17 @@ const Video = ({ video }: VideoProps) => {
 				</Button>
 			</div>
 			<div className="flex items-end gap-4">
-				<video controls className="h-[460px] xs:h-[540px] ml-[60px] rounded-md">
+				<video
+					controls
+					disablePictureInPicture
+					controlsList="nodownload noplaybackrate"
+					className="h-[460px] xs:h-[540px] ml-[60px] rounded-md hide-controls"
+				>
 					<source src={video.source} />
 				</video>
 				<div className="flex flex-col gap-[3px]">
 					<div className="flex flex-col items-center gap-[3px]">
-						<button className="border-0 outline-none rounded-full w-[50px] h-[50px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
+						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
 							<Heart className="h-6 w-6 dark:fill-light_white fill-light_gray dark:text-light_white text-light_gray" />
 						</button>
 						<span className="text-sm dark:text-light_white text-light_gray">
@@ -58,7 +65,7 @@ const Video = ({ video }: VideoProps) => {
 						</span>
 					</div>
 					<div className="flex flex-col items-center gap-[3px]">
-						<button className="border-0 outline-none rounded-full w-[50px] h-[50px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
+						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
 							<MessageCircle className="h-6 w-6 dark:fill-light_white fill-light_gray dark:text-light_white text-light_gray" />
 						</button>
 						<span className="text-sm dark:text-light_white text-light_gray">
@@ -66,7 +73,7 @@ const Video = ({ video }: VideoProps) => {
 						</span>
 					</div>
 					<div className="flex flex-col items-center gap-[3px]">
-						<button className="border-0 outline-none rounded-full w-[50px] h-[50px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
+						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
 							<Save className="h-6 w-6 dark:text-light_white text-light_gray" />
 						</button>
 						<span className="text-sm dark:text-light_white text-light_gray">
@@ -74,7 +81,7 @@ const Video = ({ video }: VideoProps) => {
 						</span>
 					</div>
 					<div className="flex flex-col items-center gap-[3px]">
-						<button className="border-0 outline-none rounded-full w-[50px] h-[50px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
+						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
 							<Send className="h-6 w-6 dark:text-light_white text-light_gray" />
 						</button>
 						<span className="text-sm dark:text-light_white text-light_gray">

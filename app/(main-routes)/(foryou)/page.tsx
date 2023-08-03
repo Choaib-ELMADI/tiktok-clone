@@ -7,7 +7,7 @@ export default async function Home() {
 	});
 
 	return (
-		<div className="flex flex-col items-center gap-8 pt-4">
+		<div className="flex flex-col items-center gap-8 p-4">
 			{videos.map((video) => (
 				<Video key={video.id} video={video} />
 			))}
