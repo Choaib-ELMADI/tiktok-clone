@@ -39,7 +39,7 @@ const Video = ({ video }: VideoProps) => {
 							.filter((i) => i !== "")
 							.map((hash, i) => (
 								<Link
-									href="/"
+									href={`/tags/${hash}`}
 									key={`hash-${i}`}
 									className="text-blue-500 dark:text-brand_2 hover:underline ml-[4px] font-semibold"
 								>
@@ -48,9 +48,9 @@ const Video = ({ video }: VideoProps) => {
 							))}
 					</p>
 					<div className="flex items-center text-sm gap-[4px]">
-						<Music className="w-4 h-4" />
-						<span>Original sound - </span>
-						<span>{video.userLink}</span>
+						<Music className="w-[14px] h-[14px]" />
+						<span>original sound - </span>
+						<span className="text-[.8rem]">{video.userName}</span>
 					</div>
 				</div>
 				<Button variant="outline" size="lg" className="ml-auto">
@@ -61,6 +61,7 @@ const Video = ({ video }: VideoProps) => {
 				<video
 					controls
 					disablePictureInPicture
+					loop
 					controlsList="nodownload noplaybackrate"
 					className="h-[460px] xs:h-[540px] ml-[60px] rounded-md hide-controls"
 				>
