@@ -63,6 +63,7 @@
 		.hide-controls::-webkit-media-controls-timeline {
 			display: none;
 		}
+
 		.hide-controls::-webkit-media-controls-fullscreen-button {
 			display: none;
 		}
