@@ -25,9 +25,9 @@ const Video = ({ video }: VideoProps) => {
 				<div className="flex flex-col">
 					<Link
 						href={`@${video.userLink}`}
-						className="hover:underline font-semibold truncate w-[140px]"
+						className="hover:underline font-semibold truncate w-[140px] xxs:w-max"
 					>
-						{video.userLink}blablabla
+						{video.userLink}
 					</Link>
 					<h3 className="text-[.8rem] w-max rounded-full py-[2px] px-[6px] bg-light_white text-light_gray dark:text-light_white dark:bg-light_gray">
 						{video.userName}
@@ -37,7 +37,7 @@ const Video = ({ video }: VideoProps) => {
 					Follow
 				</Button>
 			</div>
-			<div className="ml-[60px] mb-2">
+			<div className="mt-2 xs:mt-0 xs:ml-[60px] mb-2">
 				<p className="text-sm my-[3px]">
 					{video.caption}{" "}
 					{video.hashtags
@@ -59,17 +59,17 @@ const Video = ({ video }: VideoProps) => {
 					<span className="text-[.8rem]">{video.userName}</span>
 				</div>
 			</div>
-			<div className="flex items-end gap-4 w-full">
+			<div className="flex items-end gap-4 w-full relative">
 				<video
 					controls
 					disablePictureInPicture
 					loop
 					controlsList="nodownload noplaybackrate"
-					className="h-[460px] xs:h-[540px] max-w-[calc(100%-122px)] w-max ml-[60px] rounded-md hide-controls bg-light_white dark:bg-light_gray"
+					className="h-[460px] xs:h-[540px] max-w-[calc(100%)] xm:max-w-[calc(100%-60px)] xs:max-w-[calc(100%-122px)] w-max xs:ml-[60px] rounded-md hide-controls bg-light_white dark:bg-light_gray"
 				>
 					<source src={video.source} />
 				</video>
-				<div className="flex flex-col gap-[3px]">
+				<div className="absolute bottom-12 right-1 p-2 xs:p-0 xs:static rounded-full xs:rounded-none backdrop-blur-xl flex flex-col gap-[3px] xs:bg-transparent">
 					<div className="flex flex-col items-center gap-[3px]">
 						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
 							<Heart className="h-6 w-6 dark:fill-light_white fill-light_gray dark:text-light_white text-light_gray" />
