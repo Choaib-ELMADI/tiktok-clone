@@ -15,12 +15,20 @@ model Video {
   likes               Int
   saves               Int
   userName            String
-  userId              String
+  userId              String   @unique
   userEmailAddress    String
   userProfileImageUrl String
-  userLink            String
+  userLink            String   @unique
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
   @@map("videos")
+}
+
+model Like {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  userLink String @unique
+  videoId  String @unique
+
+  @@map("likes")
 }

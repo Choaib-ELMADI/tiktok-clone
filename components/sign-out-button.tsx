@@ -14,6 +14,7 @@ const SignOutButton = () => {
 			onClick={() => {
 				signOut();
 				router.push("/");
+				router.refresh();
 			}}
 			className="w-full bg-transparent border-0"
 		>

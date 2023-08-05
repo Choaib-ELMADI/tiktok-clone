@@ -1,15 +1,85 @@
-import { Heart, MessageCircle, Music, Save, Send } from "lucide-react";
+import { currentUser } from "@clerk/nextjs";
 import { Video } from "@prisma/client";
+import { Music } from "lucide-react";
 import Link from "next/link";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { prisma } from "@/lib/db/prisma";
+import Comment from "./video-comment";
+import LikeVideo from "./video-like";
+import Share from "./video-share";
+import Save from "./video-save";
 
 interface VideoProps {
 	video: Video;
 }
 
-const Video = ({ video }: VideoProps) => {
+const Video = async ({ video }: VideoProps) => {
+	const user = await currentUser();
+
+	const likeState = async () => {
+		"use server";
+
+		if (!user) return null;
+
+		return await prisma.like.findUnique({
+			where: {
+				userLink: user?.emailAddresses[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", ""),
+				videoId: video.id,
+			},
+		});
+	};
+
+	const likeVideo = async () => {
+		"use server";
+
+		if (!user) return null;
+
+		const userLikeState = await prisma.like.findUnique({
+			where: {
+				userLink: user?.emailAddresses?.[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", ""),
+				videoId: video.id,
+			},
+		});
+
+		if (userLikeState) {
+			await prisma.like.delete({
+				where: {
+					userLink: user?.emailAddresses?.[0].emailAddress
+						.split("@")[0]
+						.replaceAll(".", ""),
+					videoId: video.id,
+				},
+			});
+			await prisma.video.update({
+				where: {
+					id: video.id,
+				},
+				data: { likes: video.likes <= 1 ? 0 : video.likes - 1 },
+			});
+		} else {
+			await prisma.like.create({
+				data: {
+					userLink: user?.emailAddresses?.[0].emailAddress
+						.split("@")[0]
+						.replaceAll(".", ""),
+					videoId: video.id,
+				},
+			});
+			await prisma.video.update({
+				where: {
+					id: video.id,
+				},
+				data: { likes: video.likes + 1 },
+			});
+		}
+	};
+
 	return (
 		<div className="pb-4 border-b border-border max-w-[700px] w-full">
 			<div className="flex gap-2">
@@ -70,38 +140,15 @@ const Video = ({ video }: VideoProps) => {
 					<source src={video.source} />
 				</video>
 				<div className="absolute bottom-12 right-1 p-2 xs:p-0 xs:static rounded-full xs:rounded-none backdrop-blur-xl flex flex-col gap-[3px] xs:bg-transparent">
-					<div className="flex flex-col items-center gap-[3px]">
-						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
-							<Heart className="h-6 w-6 dark:fill-light_white fill-light_gray dark:text-light_white text-light_gray" />
-						</button>
-						<span className="text-sm dark:text-light_white text-light_gray">
-							0
-						</span>
-					</div>
-					<div className="flex flex-col items-center gap-[3px]">
-						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
-							<MessageCircle className="h-6 w-6 dark:fill-light_white fill-light_gray dark:text-light_white text-light_gray" />
-						</button>
-						<span className="text-sm dark:text-light_white text-light_gray">
-							0
-						</span>
-					</div>
-					<div className="flex flex-col items-center gap-[3px]">
-						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
-							<Save className="h-6 w-6 dark:text-light_white text-light_gray" />
-						</button>
-						<span className="text-sm dark:text-light_white text-light_gray">
-							0
-						</span>
-					</div>
-					<div className="flex flex-col items-center gap-[3px]">
-						<button className="border-0 outline-none rounded-full w-[46px] h-[46px] p-2 bg-light_white text-black dark:bg-light_gray dark:text-white cursor-pointer flex items-center justify-center">
-							<Send className="h-6 w-6 dark:text-light_white text-light_gray" />
-						</button>
-						<span className="text-sm dark:text-light_white text-light_gray">
-							0
-						</span>
-					</div>
+					<LikeVideo
+						video={video}
+						likeVideo={likeVideo}
+						likeState={likeState}
+						user={user}
+					/>
+					<Comment />
+					<Save />
+					<Share />
 				</div>
 			</div>
 		</div>
