@@ -63,7 +63,9 @@ export default function UploadComponent({
 			userFirstName: user?.firstName,
 			userLastName: user?.lastName,
 			userProfileImageUrl: user?.profileImageUrl,
-			userLink: user?.emailAddresses[0].emailAddress.split("@")[0],
+			userLink: user?.emailAddresses[0].emailAddress
+				.split("@")[0]
+				.replaceAll(".", ""),
 		});
 
 		toast.success("Video published", { duration: 4000 });
