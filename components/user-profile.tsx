@@ -43,7 +43,12 @@ const UserProfile = async () => {
 			<DropdownMenuContent className="w-60 mt-[12px] -translate-x-4">
 				<DropdownMenuGroup>
 					<DropdownMenuItem>
-						<Link href="/" className="flex items-center py-1 w-full">
+						<Link
+							href={`/@${user.emailAddresses[0].emailAddress
+								.split("@")[0]
+								.replaceAll(".", "")}`}
+							className="flex items-center py-1 w-full"
+						>
 							<User className="mr-3 h-5 w-5" />
 							<span className="text-[.95rem]">View Profile</span>
 						</Link>
