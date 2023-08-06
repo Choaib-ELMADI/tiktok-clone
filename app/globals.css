@@ -60,7 +60,7 @@
 			background: rgba(80, 81, 79, 0.5);
 		}
 
-		.hide-controls::-webkit-media-controls-timeline {
+		.hide-all-controls::-webkit-media-controls-timeline {
 			display: none;
 		}
 

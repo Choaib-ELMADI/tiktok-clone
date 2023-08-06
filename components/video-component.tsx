@@ -130,15 +130,17 @@ const Video = async ({ video }: VideoProps) => {
 				</div>
 			</div>
 			<div className="flex items-end gap-4 w-full relative">
-				<video
-					controls
-					disablePictureInPicture
-					loop
-					controlsList="nodownload noplaybackrate"
-					className="h-[460px] xs:h-[540px] max-w-[calc(100%)] xm:max-w-[calc(100%-60px)] xs:max-w-[calc(100%-122px)] w-max xs:ml-[60px] rounded-md hide-controls bg-light_white dark:bg-light_gray"
-				>
-					<source src={video.source} />
-				</video>
+				<Link href={`/@${video.userLink}/video/${video.id}`}>
+					<video
+						controls
+						disablePictureInPicture
+						loop
+						controlsList="nodownload noplaybackrate"
+						className="h-[460px] xs:h-[540px] max-w-[calc(100%)] xm:max-w-[calc(100%-60px)] xs:max-w-[calc(100%-122px)] w-max xs:ml-[60px] rounded-md hide-controls bg-light_white dark:bg-light_gray"
+					>
+						<source src={video.source} />
+					</video>
+				</Link>
 				<div className="absolute bottom-12 right-1 p-2 xs:p-0 xs:static rounded-full xs:rounded-none backdrop-blur-xl flex flex-col gap-[3px] xs:bg-transparent">
 					<LikeVideo
 						video={video}
