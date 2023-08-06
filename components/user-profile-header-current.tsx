@@ -15,18 +15,18 @@ const CurrentUserHeader = ({ user, likes }: { user: any; likes: number }) => {
 					</AvatarFallback>
 				</Avatar>
 				<div className="flex flex-col justify-between">
-					<h1 className="font-extrabold text-xl xs:text-2xl">
+					<h1 className="font-extrabold text-[1.1rem] xs:text-[1.25rem]">
 						{user?.emailAddresses[0].emailAddress
 							.split("@")[0]
 							.replaceAll(".", "")}
 					</h1>
-					<h1 className="font-bold text-lg xs:text-xl">
+					<h1 className="font-bold text-[1rem] xs:text-xl">
 						{user?.firstName} {user?.lastName}
 					</h1>
 					<Button
 						variant="secondary"
 						size="lg"
-						className="text-[.8rem] xs:text-[.9rem] uppercase border-2 border-light_gray bg-light_gray hover:bg-transparent text-white hover:text-black dark:hover:text-light_white"
+						className="text-[.85rem] uppercase border-2 border-light_gray bg-light_gray hover:bg-transparent text-white hover:text-black dark:hover:text-light_white"
 					>
 						Edit profile
 					</Button>
@@ -37,26 +37,26 @@ const CurrentUserHeader = ({ user, likes }: { user: any; likes: number }) => {
 				</div>
 			</div>
 			<div className="flex gap-4">
-				<p className="text-[1.1rem] text-light_gray dark:text-light_white">
-					<span className="text-xl font-extrabold text-black dark:text-white">
+				<p className="text-[1rem] text-light_gray dark:text-light_white">
+					<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
 						0
 					</span>{" "}
 					Following
 				</p>
-				<p className="text-[1.1rem] text-light_gray dark:text-light_white">
-					<span className="text-xl font-extrabold text-black dark:text-white">
+				<p className="text-[1rem] text-light_gray dark:text-light_white">
+					<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
 						0
 					</span>{" "}
 					Followers
 				</p>
-				<p className="text-[1.1rem] text-light_gray dark:text-light_white">
-					<span className="text-xl font-extrabold text-black dark:text-white">
+				<p className="text-[1rem] text-light_gray dark:text-light_white">
+					<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
 						{likes}
 					</span>{" "}
 					{likes > 1 ? "Likes" : "Like"}
 				</p>
 			</div>
-			<p className="mb-4">description or bio</p>
+			<p className="">description or bio</p>
 		</div>
 	);
 };

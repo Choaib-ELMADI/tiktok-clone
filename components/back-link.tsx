@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -15,11 +16,11 @@ const GoBack = ({ className }: GoBackProps) => {
 		<div
 			onClick={() => router.back()}
 			className={cn(
-				"bg-gray w-8 h-8 flex justify-center items-center rounded-full text-white cursor-pointer font-bold text-xl z-50",
+				"bg-gray w-8 h-8 flex justify-center items-center rounded-full text-white cursor-pointer z-50",
 				className
 			)}
 		>
-			<h1>X</h1>
+			<X className="w-5 h-5" />
 		</div>
 	);
 };

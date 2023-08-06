@@ -16,14 +16,14 @@ const ProfileHeader = ({ video, likes }: { video: Video; likes: number }) => {
 					</AvatarFallback>
 				</Avatar>
 				<div className="flex flex-col justify-between">
-					<h1 className="font-extrabold text-xl xs:text-2xl">
+					<h1 className="font-extrabold text-[1.1rem] xs:text-[1.25rem]">
 						{video.userLink}
 					</h1>
-					<h1 className="font-bold text-lg xs:text-xl">{video.userName}</h1>
+					<h1 className="font-bold text-[1rem] xs:text-xl">{video.userName}</h1>
 					<Button
 						variant="destructive"
 						size="lg"
-						className="text-[.8rem] xs:text-[.9rem] uppercase"
+						className="text-[.85rem] uppercase"
 					>
 						Follow
 					</Button>
@@ -34,26 +34,26 @@ const ProfileHeader = ({ video, likes }: { video: Video; likes: number }) => {
 				</div>
 			</div>
 			<div className="flex gap-4">
-				<p className="text-[1.1rem] text-light_gray dark:text-light_white">
-					<span className="text-xl font-extrabold text-black dark:text-white">
+				<p className="text-[1rem] text-light_gray dark:text-light_white">
+					<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
 						0
 					</span>{" "}
 					Following
 				</p>
-				<p className="text-[1.1rem] text-light_gray dark:text-light_white">
-					<span className="text-xl font-extrabold text-black dark:text-white">
+				<p className="text-[1rem] text-light_gray dark:text-light_white">
+					<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
 						0
 					</span>{" "}
 					Followers
 				</p>
-				<p className="text-[1.1rem] text-light_gray dark:text-light_white">
-					<span className="text-xl font-extrabold text-black dark:text-white">
+				<p className="text-[1rem] text-light_gray dark:text-light_white">
+					<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
 						{likes}
 					</span>{" "}
 					{likes > 1 ? "Likes" : "Like"}
 				</p>
 			</div>
-			<p className="mb-4">description or bio</p>
+			<p className="">description or bio</p>
 		</div>
 	);
 };

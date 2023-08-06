@@ -17,12 +17,12 @@ const ProfileBody = ({ videos }: { videos: Video[] }) => {
 
 	return (
 		<div>
-			<div className="border-b border-border mb-2 grid grid-cols-3 md:flex">
+			<div className="border-b border-border mb-4 grid grid-cols-3 md:flex">
 				{filterButtons.map((btn) => (
 					<button
 						key={btn.label}
 						className={cn(
-							"font-bold text-light_gray dark:text-light_white outline-none border-b-[3px] border-transparent md:px-8 pb-1 text-[1.1rem] hover:text-black dark:hover:text-white transition",
+							"font-bold text-light_gray dark:text-light_white outline-none border-b-[3px] border-transparent md:px-8 pb-1 text-[1rem] hover:text-black dark:hover:text-white transition",
 							btn.label === selectedBtn
 								? "text-black dark:text-white border-black dark:border-white"
 								: "",
@@ -51,7 +51,7 @@ const ProfileBody = ({ videos }: { videos: Video[] }) => {
 										</video>
 										<TriangleIcon className="w-4 h-4 absolute left-3 bottom-3 text-white rotate-90" />
 									</Link>
-									<p className="truncate">
+									<p className="truncate mt-1">
 										{video.hashtags
 											.split("#")
 											.filter((i) => i !== "")

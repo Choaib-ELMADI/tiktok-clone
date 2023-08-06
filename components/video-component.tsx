@@ -96,7 +96,7 @@ const Video = async ({ video }: VideoProps) => {
 				<div className="flex flex-col">
 					<Link
 						href={`@${video.userLink}`}
-						className="hover:underline font-semibold truncate w-[140px] xxs:w-max"
+						className="hover:underline font-semibold text-[1rem] tracking-wider truncate w-[140px] xxs:w-max"
 					>
 						{video.userLink}
 					</Link>
@@ -104,12 +104,16 @@ const Video = async ({ video }: VideoProps) => {
 						{video.userName}
 					</h3>
 				</div>
-				<Button variant="outline" size="lg" className="ml-auto">
-					Follow
-				</Button>
+				{user?.emailAddresses[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", "") !== video.userLink && (
+					<Button variant="outline" size="lg" className="ml-auto">
+						Follow
+					</Button>
+				)}
 			</div>
 			<div className="mt-2 xs:mt-0 xd:ml-[60px] mb-2">
-				<p className="text-sm my-[3px]">
+				<p className="text-[1rem] my-[3px]">
 					{video.caption}{" "}
 					{video.hashtags
 						.split("#")
