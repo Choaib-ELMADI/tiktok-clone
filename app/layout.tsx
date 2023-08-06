@@ -1,6 +1,6 @@
-const montserrat = Montserrat({ weight: "500", subsets: ["latin"] });
+const inter = Inter({ weight: "500", subsets: ["latin"] });
 import { ClerkProvider } from "@clerk/nextjs";
-import { Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 
 import Providers from "./providers";
@@ -19,7 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="dark" style={{ colorScheme: "dark" }}>
 			<ClerkProvider>
-				<body className={montserrat.className}>
+				<body className={inter.className}>
 					<Providers>{children}</Providers>
 				</body>
 			</ClerkProvider>

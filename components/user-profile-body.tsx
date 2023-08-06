@@ -55,7 +55,7 @@ const ProfileBody = ({ videos }: { videos: Video[] }) => {
 											.map((hash: string) => (
 												<Link
 													href={`/tags/${hash}`}
-													className="text-blue-700 dark:text-brand_2 hover:underline"
+													className="text-blue-500 dark:text-brand_2 hover:underline"
 												>
 													#{hash}
 												</Link>

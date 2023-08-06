@@ -10,6 +10,7 @@ import Comment from "./video-comment";
 import LikeVideo from "./video-like";
 import Share from "./video-share";
 import Save from "./video-save";
+import { cn } from "@/lib/utils";
 
 interface VideoProps {
 	video: Video;
@@ -107,7 +108,7 @@ const Video = async ({ video }: VideoProps) => {
 					Follow
 				</Button>
 			</div>
-			<div className="mt-2 xs:mt-0 xs:ml-[60px] mb-2">
+			<div className="mt-2 xs:mt-0 xd:ml-[60px] mb-2">
 				<p className="text-sm my-[3px]">
 					{video.caption}{" "}
 					{video.hashtags
@@ -129,19 +130,19 @@ const Video = async ({ video }: VideoProps) => {
 					<span className="text-[.8rem]">{video.userName}</span>
 				</div>
 			</div>
-			<div className="flex items-end gap-4 w-full relative">
-				<Link href={`/@${video.userLink}/video/${video.id}`}>
+			<div className="flex items-end gap-4 relative">
+				<Link href={`/@${video.userLink}/video/${video.id}`} className="w-max">
 					<video
 						controls
 						disablePictureInPicture
 						loop
 						controlsList="nodownload noplaybackrate"
-						className="h-[460px] xs:h-[540px] max-w-[calc(100%)] xm:max-w-[calc(100%-60px)] xs:max-w-[calc(100%-122px)] w-max xs:ml-[60px] rounded-md hide-controls bg-light_white dark:bg-light_gray"
+						className="w-screen xm:w-[340px] xd:ml-[60px] h-[540px] object-cover rounded-md hide-all-controls hide-controls bg-light_white dark:bg-light_gray"
 					>
 						<source src={video.source} />
 					</video>
 				</Link>
-				<div className="absolute bottom-12 right-1 p-2 xs:p-0 xs:static rounded-full xs:rounded-none backdrop-blur-xl flex flex-col gap-[3px] xs:bg-transparent">
+				<div className="absolute bottom-12 right-1 py-1 px-2 rounded-full backdrop-blur-xl xm:p-0 xm:static xm:rounded-none xm:backdrop-blur-0 xm:bg-transparent flex flex-col gap-[3px]">
 					<LikeVideo
 						video={video}
 						likeVideo={likeVideo}
