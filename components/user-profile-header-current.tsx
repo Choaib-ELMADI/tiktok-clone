@@ -7,7 +7,7 @@ const CurrentUserHeader = ({ user, likes }: { user: any; likes: number }) => {
 	return (
 		<div className="py-4">
 			<div className="flex gap-4 max-w-[600px] overflow-hidden mb-4">
-				<Avatar className="h-[100px] w-[100px] md:h-[120px] md:w-[120px]">
+				<Avatar className="h-[100px] w-[100px] md:h-[120px] md:w-[120px] bg-light_gray text-light_white">
 					<AvatarImage src={user?.profileImageUrl} />
 					<AvatarFallback>
 						{user?.firstName.charAt(0).toUpperCase()}
@@ -26,7 +26,7 @@ const CurrentUserHeader = ({ user, likes }: { user: any; likes: number }) => {
 					<Button
 						variant="secondary"
 						size="lg"
-						className="text-[.8rem] xs:text-[.9rem] uppercase border-2 border-border hover:bg-transparent text-white hover:text-black dark:hover:text-white"
+						className="text-[.8rem] xs:text-[.9rem] uppercase border-2 border-light_gray bg-light_gray hover:bg-transparent text-white hover:text-black dark:hover:text-light_white"
 					>
 						Edit profile
 					</Button>
@@ -53,7 +53,7 @@ const CurrentUserHeader = ({ user, likes }: { user: any; likes: number }) => {
 					<span className="text-xl font-extrabold text-black dark:text-white">
 						{likes}
 					</span>{" "}
-					Likes
+					{likes > 1 ? "Likes" : "Like"}
 				</p>
 			</div>
 			<p className="mb-4">description or bio</p>

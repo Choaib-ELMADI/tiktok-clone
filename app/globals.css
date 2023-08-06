@@ -60,6 +60,11 @@
 			background: rgba(80, 81, 79, 0.5);
 		}
 
+		.hide-scrollbar::-webkit-scrollbar-thumb {
+			width: 0;
+			height: 0;
+		}
+
 		.hide-all-controls::-webkit-media-controls-timeline {
 			display: none;
 		}

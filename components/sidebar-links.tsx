@@ -4,6 +4,7 @@ const montserrat = Montserrat({ weight: "700", subsets: ["latin"] });
 import { Compass, Home, User, Users, Video } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Montserrat } from "next/font/google";
+import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -33,6 +34,7 @@ const links = [
 
 const SidebarLinks = () => {
 	const pathname = usePathname();
+	const { user } = useUser();
 
 	return (
 		<>
@@ -66,10 +68,18 @@ const SidebarLinks = () => {
 				</Link>
 			))}
 			<Link
-				href="/"
+				href={`/@${user?.emailAddresses[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", "")}`}
 				className={cn(
-					"flex flex-col xs:flex-row items-center gap-1 xs:gap-4 px-4 py-3 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
-					"flex xs:hidden"
+					"flex flex-col xs:hidden items-center gap-1 xs:gap-4 px-4 py-3 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
+					pathname ===
+						`/@${user?.emailAddresses[0].emailAddress
+							.split("@")[0]
+							.replaceAll(".", "")}`
+						? "text-brand_1"
+						: "",
+					montserrat.className
 				)}
 			>
 				<User />

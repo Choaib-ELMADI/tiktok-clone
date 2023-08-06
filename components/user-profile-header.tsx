@@ -8,7 +8,7 @@ const ProfileHeader = ({ video, likes }: { video: Video; likes: number }) => {
 	return (
 		<div className="py-4">
 			<div className="flex gap-4 max-w-[600px] overflow-hidden mb-4">
-				<Avatar className="h-[100px] w-[100px] md:h-[120px] md:w-[120px]">
+				<Avatar className="h-[100px] w-[100px] md:h-[120px] md:w-[120px] bg-light_gray text-light_white">
 					<AvatarImage src={video.userProfileImageUrl} />
 					<AvatarFallback>
 						{video.userName.split(" ")[0].charAt(0).toUpperCase()}
@@ -50,7 +50,7 @@ const ProfileHeader = ({ video, likes }: { video: Video; likes: number }) => {
 					<span className="text-xl font-extrabold text-black dark:text-white">
 						{likes}
 					</span>{" "}
-					Likes
+					{likes > 1 ? "Likes" : "Like"}
 				</p>
 			</div>
 			<p className="mb-4">description or bio</p>

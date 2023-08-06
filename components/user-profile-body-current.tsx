@@ -42,7 +42,10 @@ const CurrentUserBody = ({ videos }: { videos: Video[] }) => {
 						<div className="grid xxs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
 							{videos.map((video) => (
 								<div key={video.id}>
-									<Link href="/" className="relative">
+									<Link
+										href={`/@${video.userLink}/video/${video.id}`}
+										className="relative"
+									>
 										<video className="w-full aspect-[1/1.25] bg-light_white dark:bg-light_gray rounded-sm object-cover">
 											<source src={video.source} />
 										</video>
