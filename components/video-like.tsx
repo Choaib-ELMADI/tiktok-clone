@@ -47,7 +47,8 @@ const LikeVideo = ({
 					className: "text-center text-sm",
 				}
 			);
-			// router.push("/sign-up");
+			router.push("/sign-up");
+			return;
 		}
 
 		setLiked(!liked);

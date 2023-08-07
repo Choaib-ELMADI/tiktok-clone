@@ -3,6 +3,7 @@
 import { MessageCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
+import { toast } from "react-hot-toast";
 
 import { Comment, Video } from "@prisma/client";
 import { cn } from "@/lib/utils";
@@ -24,7 +25,17 @@ const Comment = ({
 	const handleClick = () => {
 		if (!video) return;
 
-		if (!user) router.push("/sign-up");
+		if (!user) {
+			toast.error(
+				"Sign up to follow creators, like videos, and view comments.",
+				{
+					duration: 3000,
+					className: "text-center text-sm",
+				}
+			);
+			router.push("/sign-up");
+			return;
+		}
 
 		router.push(`/@${video.userLink}/video/${video.id}`);
 	};

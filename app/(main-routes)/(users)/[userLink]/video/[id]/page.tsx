@@ -110,7 +110,15 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 		"use server";
 
 		await prisma.comment.create({
-			data: { comment, videoId: video.id },
+			data: {
+				comment,
+				videoId: video.id,
+				userProfileImageUrl: user?.profileImageUrl!,
+				userLink: user?.emailAddresses[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", "")!,
+				userName: `${user?.firstName} ${user?.lastName}`,
+			},
 		});
 	};
 
@@ -146,11 +154,7 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 						/>
 					</div>
 					<VideoLink />
-					<VideoComments
-						video={video}
-						comments={comments}
-						postComment={postComment}
-					/>
+					<VideoComments comments={comments} postComment={postComment} />
 				</div>
 			</div>
 		</div>

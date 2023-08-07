@@ -18,8 +18,8 @@ export default function UploadComponent({
 	) => {};
 }) {
 	const [videoData, setVideoData] = useState({ caption: "", hashtags: "" });
+	const [videoUrl, setVideoUrl] = useState<string | null>();
 	const [video, setVideo] = useState<File | null>(null);
-	const [videoUrl, setVideoUrl] = useState<string>();
 	const [approved, setApproved] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const { user } = useUser();
@@ -89,6 +89,7 @@ export default function UploadComponent({
 				handleDataChange={handleDataChange}
 				handleAddVideo={handleAddVideo}
 				setVideoUrl={setVideoUrl}
+				videoUrl={videoUrl!}
 				approved={approved}
 				setApproved={setApproved}
 			/>

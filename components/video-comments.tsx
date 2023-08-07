@@ -10,11 +10,9 @@ import CommentWrapper from "./comment-wrapper";
 import { cn } from "@/lib/utils";
 
 const VideoComments = ({
-	video,
 	comments,
 	postComment,
 }: {
-	video: Video;
 	comments: Comment[];
 	postComment: (c: string) => void;
 }) => {
@@ -51,11 +49,7 @@ const VideoComments = ({
 				) : (
 					<div className="flex flex-col gap-6 mt-4 mb-4 lg:mb-0">
 						{comments.map((comment) => (
-							<CommentWrapper
-								comment={comment}
-								video={video}
-								key={comment.id}
-							/>
+							<CommentWrapper comment={comment} key={comment.id} />
 						))}
 					</div>
 				)}

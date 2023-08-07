@@ -1,6 +1,7 @@
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ChangeEvent, useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { toast } from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
 import { storage } from "@/lib/db/firebase";
@@ -14,7 +15,8 @@ interface AfterUploadProps {
 	videoData: { caption: string; hashtags: string };
 	handleDataChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	handleAddVideo: () => void;
-	setVideoUrl: (url: string) => void;
+	setVideoUrl: (url: string | null) => void;
+	videoUrl: string | null;
 	approved: boolean;
 	setApproved: (s: boolean) => void;
 }
@@ -26,6 +28,7 @@ const AfterUpload = ({
 	handleDataChange,
 	handleAddVideo,
 	setVideoUrl,
+	videoUrl,
 	approved,
 	setApproved,
 }: AfterUploadProps) => {
@@ -56,7 +59,12 @@ const AfterUpload = ({
 		uploadTask.on(
 			"state_changed",
 			(snapshot) => {},
-			(error) => {},
+			(error) => {
+				setApproving(false);
+				setApproved(false);
+				toast.error("An error occured", { duration: 4000 });
+				return;
+			},
 			() => {
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 					setApproved(true);
@@ -65,6 +73,20 @@ const AfterUpload = ({
 				});
 			}
 		);
+
+		let timeoutId = setTimeout(() => {
+			toast.error("Action took too long. Please try again later", {
+				duration: 4000,
+				className: "text-center text-[.9rem]",
+			});
+			setApproved(false);
+			setApproving(false);
+			setVideoUrl(null);
+		}, 4 * 60 * 1000);
+
+		if (videoUrl) {
+			clearTimeout(timeoutId);
+		}
 	};
 
 	return (

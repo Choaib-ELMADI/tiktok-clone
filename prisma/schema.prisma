@@ -35,12 +35,15 @@ model Like {
 }
 
 model Comment {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  comment   String
-  videoId   String   @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  video     Video    @relation(fields: [videoId], references: [id])
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  comment             String
+  videoId             String   @db.ObjectId
+  userName            String
+  userLink            String
+  userProfileImageUrl String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  video               Video    @relation(fields: [videoId], references: [id])
 
   @@map("comments")
 }
