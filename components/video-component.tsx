@@ -10,7 +10,6 @@ import Comment from "./video-comment";
 import LikeVideo from "./video-like";
 import Share from "./video-share";
 import Save from "./video-save";
-import { cn } from "@/lib/utils";
 
 interface VideoProps {
 	video: Video;
@@ -152,10 +151,11 @@ const Video = async ({ video }: VideoProps) => {
 						likeVideo={likeVideo}
 						likeState={likeState}
 						user={user}
+						className="flex-col"
 					/>
-					<Comment />
-					<Save />
-					<Share />
+					<Comment className="flex-col" />
+					<Save className="flex-col" />
+					<Share className="flex-col" />
 				</div>
 			</div>
 		</div>

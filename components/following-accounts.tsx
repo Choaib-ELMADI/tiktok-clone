@@ -41,11 +41,11 @@ const FollowingAccounts = async () => {
 							</AvatarFallback>
 						</Avatar>
 						<div className="hidden md:flex flex-col">
-							<h1 className="w-[175px] text-sm overflow-hidden truncate">
-								{account.userName}
+							<h1 className="w-[175px] text-sm font-semibold tracking-wider overflow-hidden truncate">
+								{account.userLink}
 							</h1>
 							<h1 className="w-[175px] text-[.8rem] dark:text-light_white opacity-80 overflow-hidden truncate">
-								@{account.userLink}
+								{account.userName}
 							</h1>
 						</div>
 					</Link>
