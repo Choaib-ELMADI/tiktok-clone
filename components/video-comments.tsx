@@ -37,10 +37,10 @@ const VideoComments = ({
 
 	return (
 		<div className="mt-2 flex flex-col">
-			<h1 className="py-2 border-b-2 border-border font-semibold mx-2 xs:mx-6">
+			<h1 className="order-1 py-2 border-b-2 border-border font-semibold mx-2 xs:mx-6">
 				Comments ({comments.length})
 			</h1>
-			<div className="h-max min-h-[200px] lg:h-[calc(100vh-400px)] overflow-scroll show-scrollbar mx-2 xs:mx-6">
+			<div className="order-3 lg:order-2 h-max min-h-[200px] lg:h-[calc(100vh-400px)] overflow-scroll show-scrollbar mx-2 xs:mx-6">
 				{comments.length === 0 ? (
 					<div className="flex flex-col justify-center items-center h-full py-10 lg:py-0">
 						<Bird className="w-[80px] h-[80px] mb-2" />
@@ -54,7 +54,7 @@ const VideoComments = ({
 					</div>
 				)}
 			</div>
-			<div className="mt-auto flex items-center justify-between border-t-2 border-border px-2 xs:px-6 py-4">
+			<div className="order-2 border-b-2 lg:order-3 lg:border-t-2 mt-auto flex items-center justify-between border-border px-2 xs:px-6 py-4">
 				<textarea
 					placeholder="Add comment..."
 					rows={2}
