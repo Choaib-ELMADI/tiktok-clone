@@ -45,7 +45,7 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 
 		if (!user) return null;
 
-		return await prisma.like.findUnique({
+		return await prisma.like.findFirst({
 			where: {
 				userLink: user?.emailAddresses[0].emailAddress
 					.split("@")[0]
@@ -60,7 +60,7 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 
 		if (!user) return null;
 
-		const userLikeState = await prisma.like.findUnique({
+		const userLikeState = await prisma.like.findFirst({
 			where: {
 				userLink: user?.emailAddresses?.[0].emailAddress
 					.split("@")[0]
@@ -70,7 +70,7 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 		});
 
 		if (userLikeState) {
-			await prisma.like.delete({
+			await prisma.like.deleteMany({
 				where: {
 					userLink: user?.emailAddresses?.[0].emailAddress
 						.split("@")[0]

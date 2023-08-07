@@ -50,7 +50,7 @@ const VideoHeader = async ({ video }: { video: Video }) => {
 					</Button>
 				)}
 			</div>
-			<p className="text-[1rem] my-[3px]">
+			<p className="text-[1rem] my-[3px] truncate">
 				{video.caption}{" "}
 				{video.hashtags
 					.split("#")
