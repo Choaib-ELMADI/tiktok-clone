@@ -9,9 +9,12 @@ const Save = ({ className, text }: { className: string; text?: string }) => {
 				<SaveIcon className="h-5 w-5 xm:w-6 xm:h-6 dark:text-light_white text-light_gray" />
 			</button>
 			<span
-				className={cn("text-sm dark:text-light_white text-light_gray", text)}
+				className={cn(
+					"text-[.9rem] dark:text-light_white text-light_gray font-semibold",
+					text
+				)}
 			>
-				0
+				{0 > 1000 ? `${0 / 1000}K` : 0}
 			</span>
 		</div>
 	);

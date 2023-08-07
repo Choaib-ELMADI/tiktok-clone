@@ -18,7 +18,7 @@ const CommentWrapper = ({ comment }: { comment: Comment }) => {
 					</AvatarFallback>
 				</Avatar>
 			</Link>
-			<div className="flex flex-col">
+			<div className="flex flex-col gap-[2px]">
 				<Link
 					href={`/@${comment.userLink}`}
 					className="hover:underline text-[.9rem] font-semibold tracking-wider"
