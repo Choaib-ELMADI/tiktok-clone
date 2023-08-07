@@ -80,6 +80,10 @@ const Video = async ({ video }: VideoProps) => {
 		}
 	};
 
+	const comments = await prisma.comment.findMany({
+		where: { videoId: video.id },
+	});
+
 	return (
 		<div className="pb-4 border-b border-border max-w-[700px] w-full">
 			<div className="flex gap-2">
@@ -153,7 +157,7 @@ const Video = async ({ video }: VideoProps) => {
 						user={user}
 						className="flex-col"
 					/>
-					<Comment className="flex-col" />
+					<Comment video={video} className="flex-col" comments={comments} />
 					<Save className="flex-col" />
 					<Share className="flex-col" />
 				</div>

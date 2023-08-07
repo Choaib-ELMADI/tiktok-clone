@@ -40,6 +40,10 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 		);
 	}
 
+	const comments = await prisma.comment.findMany({
+		where: { videoId: video.id },
+	});
+
 	const likeState = async () => {
 		"use server";
 
@@ -115,18 +119,13 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 			<div className="grid grid-cols-1 lg:grid-cols-[auto_500px]">
 				<div className="flex justify-center bg-light_white dark:bg-light_gray relative">
 					<GoBack className="absolute top-4 left-4" />
-					<video
-						className="h-[540px] lg:h-screen hide-controls"
-						controls
-						autoPlay
-						loop
-					>
+					<video className="h-[540px] lg:h-screen hide-controls" controls loop>
 						<source src={video.source} />
 					</video>
 				</div>
 				<div className="h-max lg:h-screen overflow-scroll pt-6">
 					<VideoHeader video={video} />
-					<div className="flex items-center gap-4 my-2 px-6">
+					<div className="flex items-center gap-4 my-2 px-2 xs:px-6">
 						<LikeVideo
 							video={video}
 							likeVideo={likeVideo}
@@ -135,7 +134,11 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 							className="flex-row scale-[.8]"
 							text="text-[1.1rem]"
 						/>
-						<Comment className="flex-row scale-[.8]" text="text-[1.1rem]" />
+						<Comment
+							className="flex-row scale-[.8]"
+							text="text-[1.1rem]"
+							comments={comments}
+						/>
 						<Save className="flex-row scale-[.8]" text="text-[1.1rem]" />
 						<Share
 							className="flex-row-reverse scale-[.8] ml-auto"
@@ -143,7 +146,11 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 						/>
 					</div>
 					<VideoLink />
-					<VideoComments video={video} postComment={postComment} />
+					<VideoComments
+						video={video}
+						comments={comments}
+						postComment={postComment}
+					/>
 				</div>
 			</div>
 		</div>
