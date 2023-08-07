@@ -2,6 +2,7 @@ import { currentUser } from "@clerk/nextjs";
 import { Play } from "lucide-react";
 import Link from "next/link";
 
+import VideoComments from "@/components/video-comments";
 import VideoHeader from "@/components/video-header";
 import Comment from "@/components/video-comment";
 import { Button } from "@/components/ui/button";
@@ -101,18 +102,31 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 		}
 	};
 
+	const postComment = async (comment: string) => {
+		"use server";
+
+		await prisma.comment.create({
+			data: { comment, videoId: video.id },
+		});
+	};
+
 	return (
 		<div className="fixed top-0 left-0 w-full h-screen bg-white dark:bg-black z-50 overflow-auto">
 			<div className="grid grid-cols-1 lg:grid-cols-[auto_500px]">
-				<div className="flex justify-center bg-light_white dark:bg-light_gray">
-					<GoBack className="fixed top-4 left-4" />
-					<video className="h-[540px] lg:h-screen hide-controls" controls loop>
+				<div className="flex justify-center bg-light_white dark:bg-light_gray relative">
+					<GoBack className="absolute top-4 left-4" />
+					<video
+						className="h-[540px] lg:h-screen hide-controls"
+						controls
+						autoPlay
+						loop
+					>
 						<source src={video.source} />
 					</video>
 				</div>
-				<div className="h-max lg:h-screen lg:overflow-auto p-6">
+				<div className="h-max lg:h-screen overflow-scroll pt-6">
 					<VideoHeader video={video} />
-					<div className="flex items-center gap-4 my-2">
+					<div className="flex items-center gap-4 my-2 px-6">
 						<LikeVideo
 							video={video}
 							likeVideo={likeVideo}
@@ -129,6 +143,7 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 						/>
 					</div>
 					<VideoLink />
+					<VideoComments video={video} postComment={postComment} />
 				</div>
 			</div>
 		</div>

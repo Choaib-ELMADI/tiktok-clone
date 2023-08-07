@@ -8,19 +8,20 @@ datasource db {
 }
 
 model Video {
-  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  id                  String    @id @default(auto()) @map("_id") @db.ObjectId
   caption             String
   hashtags            String
   source              String
   likes               Int
   saves               Int
   userName            String
-  userId              String   @unique
+  userId              String    @unique
   userEmailAddress    String
   userProfileImageUrl String
-  userLink            String   @unique
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  userLink            String    @unique
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  comment             Comment[]
 
   @@map("videos")
 }
@@ -31,4 +32,15 @@ model Like {
   videoId  String @unique
 
   @@map("likes")
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  comment   String
+  videoId   String   @unique @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  video     Video    @relation(fields: [videoId], references: [id])
+
+  @@map("comments")
 }

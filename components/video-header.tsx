@@ -11,7 +11,7 @@ const VideoHeader = async ({ video }: { video: Video }) => {
 	const user = await currentUser();
 
 	return (
-		<div className="bg-light_white dark:bg-light_gray rounded-lg p-2">
+		<div className="bg-light_white dark:bg-light_gray rounded-lg p-2 mx-6">
 			<div className="flex gap-2 items-center">
 				<Link href={`/@${video.userLink}`}>
 					<Avatar className="w-12 h-12 bg-light_gray text-light_white dark:bg-light_white dark:text-light_gray">
