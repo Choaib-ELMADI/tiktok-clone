@@ -6,6 +6,7 @@ import VideoHeader from "@/components/video-header";
 import Comment from "@/components/video-comment";
 import { Button } from "@/components/ui/button";
 import LikeVideo from "@/components/video-like";
+import VideoLink from "@/components/video-link";
 import Share from "@/components/video-share";
 import GoBack from "@/components/back-link";
 import Save from "@/components/video-save";
@@ -127,6 +128,7 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 							text="text-[1.1rem]"
 						/>
 					</div>
+					<VideoLink />
 				</div>
 			</div>
 		</div>
