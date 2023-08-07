@@ -14,11 +14,13 @@ export default function UploadComponent({
 	publishVideo: (
 		video: string,
 		videoData: { caption: string; hashtags: string },
-		user: UserProps
+		user: UserProps,
+		showtimeline: boolean
 	) => {};
 }) {
 	const [videoData, setVideoData] = useState({ caption: "", hashtags: "" });
 	const [videoUrl, setVideoUrl] = useState<string | null>();
+	const [showtimeline, setShowtimeline] = useState(true);
 	const [video, setVideo] = useState<File | null>(null);
 	const [approved, setApproved] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -57,16 +59,21 @@ export default function UploadComponent({
 			return;
 		}
 
-		publishVideo(videoUrl, videoData, {
-			userEmailAddress: user?.emailAddresses[0].emailAddress,
-			userId: user?.id,
-			userFirstName: user?.firstName,
-			userLastName: user?.lastName,
-			userProfileImageUrl: user?.profileImageUrl,
-			userLink: user?.emailAddresses[0].emailAddress
-				.split("@")[0]
-				.replaceAll(".", ""),
-		});
+		publishVideo(
+			videoUrl,
+			videoData,
+			{
+				userEmailAddress: user?.emailAddresses[0].emailAddress,
+				userId: user?.id,
+				userFirstName: user?.firstName,
+				userLastName: user?.lastName,
+				userProfileImageUrl: user?.profileImageUrl,
+				userLink: user?.emailAddresses[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", ""),
+			},
+			showtimeline
+		);
 
 		toast.success("Video published", { duration: 4000 });
 		setLoading(false);
@@ -92,6 +99,8 @@ export default function UploadComponent({
 				videoUrl={videoUrl!}
 				approved={approved}
 				setApproved={setApproved}
+				showtimeline={showtimeline}
+				setShowtimeline={setShowtimeline}
 			/>
 		</div>
 	);

@@ -18,14 +18,14 @@ const CommentWrapper = ({ comment }: { comment: Comment }) => {
 					</AvatarFallback>
 				</Avatar>
 			</Link>
-			<div className="flex flex-col gap-[2px]">
+			<div className="flex flex-col">
 				<Link
 					href={`/@${comment.userLink}`}
 					className="hover:underline text-[.9rem] font-semibold tracking-wider"
 				>
 					{comment.userName}
 				</Link>
-				<p>{comment.comment}</p>
+				<p className="leading-[1.2rem] font-medium">{comment.comment}</p>
 				<p>
 					{new Date(comment.createdAt).getMonth() + 1}
 					{" - "}

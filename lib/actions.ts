@@ -6,7 +6,8 @@ import { UserProps } from "./utils";
 export const publishVideo = async (
 	video: string,
 	{ caption, hashtags }: { caption: string; hashtags: string },
-	user: UserProps
+	user: UserProps,
+	showtimeline: boolean
 ) => {
 	"use server";
 
@@ -39,6 +40,7 @@ export const publishVideo = async (
 			userEmailAddress,
 			userProfileImageUrl,
 			userLink,
+			showtimeline,
 		},
 	});
 };

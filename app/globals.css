@@ -56,13 +56,20 @@
 
 @layer utilities {
 	@variants responsive {
-		.show-scrollbar:hover::-webkit-scrollbar-thumb {
-			background: rgba(80, 81, 79, 0.5);
+		.show-scrollbar::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+			background: transparent;
 		}
 
-		.hide-scrollbar::-webkit-scrollbar-thumb {
-			width: 0;
-			height: 0;
+		.show-scrollbar::-webkit-scrollbar-thumb {
+			width: 5px;
+			height: 5px;
+			background: transparent;
+		}
+
+		.show-scrollbar:hover::-webkit-scrollbar-thumb {
+			background: rgba(0, 0, 0, .4);
 		}
 
 		.hide-all-controls::-webkit-media-controls-timeline {
@@ -85,17 +92,17 @@
 	box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
-	height: 5px;
-	width: 5px;
+*::-webkit-scrollbar {
+	height: 0;
+	width: 0;
 	background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
 	background: transparent;
 	border-radius: 10px;
 }
 
-::-webkit-scrollbar-corner {
+*::-webkit-scrollbar-corner {
 	display: none;
 }

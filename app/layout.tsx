@@ -17,11 +17,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html
-			lang="en"
-			className="dark hide-scrollbar"
-			style={{ colorScheme: "dark" }}
-		>
+		<html lang="en" className="dark" style={{ colorScheme: "dark" }}>
 			<ClerkProvider>
 				<body className={inter.className}>
 					<Providers>{children}</Providers>

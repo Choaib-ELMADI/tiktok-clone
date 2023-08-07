@@ -9,6 +9,7 @@ import { prisma } from "@/lib/db/prisma";
 import Comment from "./video-comment";
 import LikeVideo from "./video-like";
 import Share from "./video-share";
+import { cn } from "@/lib/utils";
 import Save from "./video-save";
 
 interface VideoProps {
@@ -144,7 +145,10 @@ const Video = async ({ video }: VideoProps) => {
 						disablePictureInPicture
 						loop
 						controlsList="nodownload noplaybackrate"
-						className="w-screen xm:w-[340px] xd:ml-[60px] h-[540px] object-cover rounded-md hide-all-controls hide-controls bg-light_white dark:bg-light_gray"
+						className={cn(
+							"w-screen xm:w-[340px] xd:ml-[60px] h-[540px] object-cover rounded-md hide-controls bg-light_white dark:bg-light_gray",
+							video.showtimeline ? "" : "hide-all-controls"
+						)}
 					>
 						<source src={video.source} />
 					</video>

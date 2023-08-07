@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { storage } from "@/lib/db/firebase";
 import { cn } from "@/lib/utils";
 const CAPTION_MAX_LENGTH = 300;
@@ -19,6 +20,8 @@ interface AfterUploadProps {
 	videoUrl: string | null;
 	approved: boolean;
 	setApproved: (s: boolean) => void;
+	showtimeline: boolean;
+	setShowtimeline: (s: boolean) => void;
 }
 
 const AfterUpload = ({
@@ -31,6 +34,8 @@ const AfterUpload = ({
 	videoUrl,
 	approved,
 	setApproved,
+	showtimeline,
+	setShowtimeline,
 }: AfterUploadProps) => {
 	const videoWrapperRef = useRef<HTMLDivElement>(null);
 	const [approving, setApproving] = useState(false);
@@ -134,7 +139,7 @@ const AfterUpload = ({
 							</>
 						)}
 					</div>
-					<div className="flex flex-col gap-4 flex-grow">
+					<div className="flex flex-col gap-4 flex-grow font-semibold">
 						<div className="flex flex-col w-full">
 							<div className="flex items-center justify-between">
 								<label htmlFor="caption">Caption</label>
@@ -179,6 +184,18 @@ const AfterUpload = ({
 										: ""
 								)}
 							/>
+						</div>
+						<div className="flex flex-col w-full">
+							<div className="flex gap-2">
+								<p>Show timeline</p>
+								<Switch
+									checked={showtimeline}
+									onClick={() => setShowtimeline(!showtimeline)}
+								/>
+							</div>
+							<p className="text-[.9rem] text-light_gray">
+								Show the video timeline for this video in the foryou page.
+							</p>
 						</div>
 						<div className="grid grid-cols-1 xxs:grid-cols-2 xs:flex gap-2 mt-auto">
 							<Button
