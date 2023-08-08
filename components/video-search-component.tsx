@@ -7,7 +7,7 @@ const VideoSearch = ({ video }: { video: Video }) => {
 	return (
 		<div>
 			<Link href={`/@${video.userLink}/video/${video.id}`} className="relative">
-				<video className="hide-controls hide-all-controls w-full aspect-[1/1.2] object-cover rounded-md">
+				<video className="hide-controls hide-all-controls w-full aspect-[1/1.2] object-cover rounded-md bg-light_white dark:bg-light_gray">
 					<source src={video.source} />
 				</video>
 				<p className="absolute left-2 bottom-2 text-white text-[1rem] font-semibold">
@@ -23,9 +23,9 @@ const VideoSearch = ({ video }: { video: Video }) => {
 				href={`/@${video.userLink}`}
 				className="group flex items-center gap-2"
 			>
-				<Avatar className="w-7 h-7">
+				<Avatar className="w-7 h-7 bg-light_white text-light_gray dark:bg-light_gray dark:text-light_white">
 					<AvatarImage src={video.userProfileImageUrl} />
-					<AvatarFallback>
+					<AvatarFallback className="text-[.7rem]">
 						{video.userName.split(" ")[0].charAt(0).toUpperCase()}
 						{video.userName.split(" ")[1].charAt(0).toUpperCase()}
 					</AvatarFallback>

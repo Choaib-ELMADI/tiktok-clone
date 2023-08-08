@@ -24,6 +24,7 @@
 
 		--radius: 0.5rem;
 		--border: var(--black);
+		--thumb-bg: rgba(0, 0, 0, .4);
 	}
 
 	.dark {
@@ -45,6 +46,7 @@
 		--secondary: var(--light_gray);
 
 		--border: var(--light_gray);
+		--thumb-bg: rgba(255, 255, 255, .4);
 	}
 }
 
@@ -69,7 +71,7 @@
 		}
 
 		.show-scrollbar:hover::-webkit-scrollbar-thumb {
-			background: rgba(0, 0, 0, .4);
+			background: var(--thumb-bg);
 		}
 
 		.hide-all-controls::-webkit-media-controls-timeline {
