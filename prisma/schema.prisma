@@ -35,6 +35,14 @@ model Like {
   @@map("likes")
 }
 
+model Save {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  userLink String
+  videoId  String
+
+  @@map("saves")
+}
+
 model Comment {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
   comment             String

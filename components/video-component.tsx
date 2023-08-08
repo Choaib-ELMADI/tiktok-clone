@@ -85,6 +85,68 @@ const Video = async ({ video }: VideoProps) => {
 		where: { videoId: video.id },
 	});
 
+	const saveState = async () => {
+		"use server";
+
+		if (!user) return null;
+
+		return await prisma.save.findFirst({
+			where: {
+				userLink: user?.emailAddresses[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", ""),
+				videoId: video.id,
+			},
+		});
+	};
+
+	const saveVideo = async () => {
+		"use server";
+
+		if (!user) return null;
+
+		const userSaveState = await prisma.save.findFirst({
+			where: {
+				userLink: user?.emailAddresses?.[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", ""),
+				videoId: video.id,
+			},
+		});
+
+		if (userSaveState) {
+			await prisma.save.deleteMany({
+				where: {
+					userLink: user?.emailAddresses?.[0].emailAddress
+						.split("@")[0]
+						.replaceAll(".", ""),
+					videoId: video.id,
+				},
+			});
+			await prisma.video.update({
+				where: {
+					id: video.id,
+				},
+				data: { saves: video.saves <= 1 ? 0 : video.saves - 1 },
+			});
+		} else {
+			await prisma.save.create({
+				data: {
+					userLink: user?.emailAddresses?.[0].emailAddress
+						.split("@")[0]
+						.replaceAll(".", ""),
+					videoId: video.id,
+				},
+			});
+			await prisma.video.update({
+				where: {
+					id: video.id,
+				},
+				data: { saves: video.saves + 1 },
+			});
+		}
+	};
+
 	return (
 		<div className="pb-4 border-b border-border max-w-[700px] w-full">
 			<div className="flex gap-2">
@@ -162,7 +224,13 @@ const Video = async ({ video }: VideoProps) => {
 						className="flex-col"
 					/>
 					<Comment video={video} className="flex-col" comments={comments} />
-					<Save className="flex-col" />
+					<Save
+						video={video}
+						className="flex-col"
+						saveState={saveState}
+						saveVideo={saveVideo}
+						user={user}
+					/>
 					<Share className="flex-col" />
 				</div>
 			</div>

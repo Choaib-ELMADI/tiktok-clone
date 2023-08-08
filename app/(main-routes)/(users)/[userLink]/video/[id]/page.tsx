@@ -122,6 +122,68 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 		});
 	};
 
+	const saveState = async () => {
+		"use server";
+
+		if (!user) return null;
+
+		return await prisma.save.findFirst({
+			where: {
+				userLink: user?.emailAddresses[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", ""),
+				videoId: video.id,
+			},
+		});
+	};
+
+	const saveVideo = async () => {
+		"use server";
+
+		if (!user) return null;
+
+		const userSaveState = await prisma.save.findFirst({
+			where: {
+				userLink: user?.emailAddresses?.[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", ""),
+				videoId: video.id,
+			},
+		});
+
+		if (userSaveState) {
+			await prisma.save.deleteMany({
+				where: {
+					userLink: user?.emailAddresses?.[0].emailAddress
+						.split("@")[0]
+						.replaceAll(".", ""),
+					videoId: video.id,
+				},
+			});
+			await prisma.video.update({
+				where: {
+					id: video.id,
+				},
+				data: { saves: video.saves <= 1 ? 0 : video.saves - 1 },
+			});
+		} else {
+			await prisma.save.create({
+				data: {
+					userLink: user?.emailAddresses?.[0].emailAddress
+						.split("@")[0]
+						.replaceAll(".", ""),
+					videoId: video.id,
+				},
+			});
+			await prisma.video.update({
+				where: {
+					id: video.id,
+				},
+				data: { saves: video.saves + 1 },
+			});
+		}
+	};
+
 	return (
 		<div className="fixed top-0 left-0 w-full h-screen bg-white dark:bg-black z-50 overflow-auto">
 			<div className="grid grid-cols-1 lg:grid-cols-[auto_500px]">
@@ -147,7 +209,14 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 							text="text-[1.1rem]"
 							comments={comments}
 						/>
-						<Save className="flex-row scale-[.8]" text="text-[1.1rem]" />
+						<Save
+							className="flex-row scale-[.8]"
+							text="text-[1.1rem]"
+							video={video}
+							saveState={saveState}
+							saveVideo={saveVideo}
+							user={user}
+						/>
 						<Share
 							className="flex-row-reverse scale-[.8] ml-auto"
 							text="text-[1.1rem]"
