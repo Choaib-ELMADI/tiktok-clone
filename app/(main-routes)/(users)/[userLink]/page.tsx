@@ -44,6 +44,42 @@ export default async function UserPage({
 		currentUserLikes += video.likes;
 	});
 
+	const likedVideosLinks = await prisma.like.findMany({
+		where: {
+			userLink: user?.emailAddresses[0].emailAddress
+				.split("@")[0]
+				.replaceAll(".", ""),
+		},
+	});
+	const likedVideosPromiseArray = likedVideosLinks.map(
+		async (likedVideoLink) => {
+			return prisma.video.findUnique({
+				where: {
+					id: likedVideoLink.videoId,
+				},
+			});
+		}
+	);
+	const likedVideos = await Promise.all(likedVideosPromiseArray);
+
+	const savedVideosLinks = await prisma.save.findMany({
+		where: {
+			userLink: user?.emailAddresses[0].emailAddress
+				.split("@")[0]
+				.replaceAll(".", ""),
+		},
+	});
+	const savedVideosPromiseArray = savedVideosLinks.map(
+		async (savedVideoLink) => {
+			return prisma.video.findUnique({
+				where: {
+					id: savedVideoLink.videoId,
+				},
+			});
+		}
+	);
+	const savedVideos = await Promise.all(savedVideosPromiseArray);
+
 	return (
 		<div className="p-2 xs:p-4">
 			{(!video &&
@@ -59,7 +95,13 @@ export default async function UserPage({
 						.replaceAll(".", "")) ? (
 				<>
 					<CurrentUserHeader user={user} likes={currentUserLikes} />
-					<CurrentUserBody videos={allCurrentUserVideos} />
+					<CurrentUserBody
+						videos={allCurrentUserVideos}
+						//@ts-ignore
+						likedVideos={likedVideos}
+						//@ts-ignore
+						savedVideos={savedVideos}
+					/>
 				</>
 			) : video ? (
 				<>

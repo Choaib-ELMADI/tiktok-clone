@@ -12,7 +12,15 @@ const filterButtons = [
 	{ label: "Favorites" },
 ];
 
-const CurrentUserBody = ({ videos }: { videos: Video[] }) => {
+const CurrentUserBody = ({
+	videos,
+	likedVideos,
+	savedVideos,
+}: {
+	videos: Video[];
+	likedVideos: Video[];
+	savedVideos: Video[];
+}) => {
 	const [selectedBtn, setSelectedBtn] = useState("Videos");
 
 	return (
@@ -80,24 +88,80 @@ const CurrentUserBody = ({ videos }: { videos: Video[] }) => {
 						</div>
 					)
 				) : selectedBtn === "Liked" ? (
+					likedVideos.length === 0 ? (
+						<div className="flex flex-col justify-center items-center gap-1 px-4 py-32">
+							<Lock className="w-[80px] h-[80px] text-light_gray dark:text-light_white mb-3" />
+							<h1 className="font-bold text-xl text-dark dark:text-white">
+								You're liked videos will be shown here
+							</h1>
+						</div>
+					) : (
+						<div className="grid xxs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+							{likedVideos.map((video) => (
+								<div key={video.id}>
+									<Link
+										href={`/@${video.userLink}/video/${video.id}`}
+										className="relative"
+									>
+										<video className="w-full aspect-[1/1.25] bg-light_white dark:bg-light_gray rounded-sm object-cover">
+											<source src={video.source} />
+										</video>
+										<TriangleIcon className="w-4 h-4 absolute left-3 bottom-3 text-white rotate-90" />
+									</Link>
+									<p className="truncate mt-1">
+										{video.hashtags
+											.split("#")
+											.filter((i) => i !== "")
+											.map((hash: string) => (
+												<Link
+													href={`/tags/${hash}`}
+													className="text-blue-500 dark:text-brand_2 hover:underline"
+												>
+													#{hash}
+												</Link>
+											))}{" "}
+										{video.caption}
+									</p>
+								</div>
+							))}
+						</div>
+					)
+				) : savedVideos.length === 0 ? (
 					<div className="flex flex-col justify-center items-center gap-1 px-4 py-32">
 						<Lock className="w-[80px] h-[80px] text-light_gray dark:text-light_white mb-3" />
 						<h1 className="font-bold text-xl text-dark dark:text-white">
-							You're liked videos here
+							You're favorite videos will be shown here
 						</h1>
-						{/* <p className="text-[1rem] text-light_gray dark:text-light_white font-semibold">
-							Videos liked by {videos[0].userLink} are currently hidden
-						</p> */}
 					</div>
 				) : (
-					<div className="flex flex-col justify-center items-center gap-1 px-4 py-32">
-						<Lock className="w-[80px] h-[80px] text-light_gray dark:text-light_white mb-3" />
-						<h1 className="font-bold text-xl text-dark dark:text-white">
-							You're favorite videos here
-						</h1>
-						{/* <p className="text-[1rem] text-light_gray dark:text-light_white font-semibold">
-							Favorite videos of {videos[0].userLink} are currently hidden
-						</p> */}
+					<div className="grid xxs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+						{savedVideos.map((video) => (
+							<div key={video.id}>
+								<Link
+									href={`/@${video.userLink}/video/${video.id}`}
+									className="relative"
+								>
+									<video className="w-full aspect-[1/1.25] bg-light_white dark:bg-light_gray rounded-sm object-cover">
+										<source src={video.source} />
+									</video>
+									<TriangleIcon className="w-4 h-4 absolute left-3 bottom-3 text-white rotate-90" />
+								</Link>
+								<p className="truncate mt-1">
+									{video.hashtags
+										.split("#")
+										.filter((i) => i !== "")
+										.map((hash: string) => (
+											<Link
+												href={`/tags/${hash}`}
+												className="text-blue-500 dark:text-brand_2 hover:underline"
+											>
+												#{hash}
+											</Link>
+										))}{" "}
+									{video.caption}
+								</p>
+							</div>
+						))}
 					</div>
 				)}
 			</>
