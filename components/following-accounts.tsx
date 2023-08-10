@@ -1,9 +1,13 @@
+import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { prisma } from "@/lib/db/prisma";
+import { cn } from "@/lib/utils";
 
 const FollowingAccounts = async () => {
+	const user = await currentUser();
+
 	const followingAccounts = await prisma.video.findMany();
 	if (followingAccounts.length === 0) return null;
 
@@ -29,9 +33,16 @@ const FollowingAccounts = async () => {
 			{removeDuplicatesByProperty(followingAccounts, "userLink").map(
 				(account) => (
 					<Link
-						href={account.userLink}
+						href={`/@${account.userLink}`}
 						key={account.userLink}
-						className="flex items-center gap-2 p-2 w-max md:w-full md:px-2 md:py-1 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition"
+						className={cn(
+							"flex items-center gap-2 p-2 w-max md:w-full md:px-2 md:py-1 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
+							user?.emailAddresses[0].emailAddress
+								.split("@")[0]
+								.replaceAll(".", "") === account.userLink
+								? "bg-brand_1_trs dark:bg-brand_1_trs"
+								: ""
+						)}
 					>
 						<Avatar className="w-[35px] h-[35px]">
 							<AvatarImage src={account.userProfileImageUrl} />
