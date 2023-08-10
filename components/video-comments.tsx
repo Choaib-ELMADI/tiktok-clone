@@ -12,9 +12,11 @@ import { cn } from "@/lib/utils";
 const VideoComments = ({
 	comments,
 	postComment,
+	deleteComment,
 }: {
 	comments: Comment[];
 	postComment: (c: string) => void;
+	deleteComment: (id: string) => void;
 }) => {
 	const [loading, setLoading] = useState(false);
 	const [comment, setComment] = useState("");
@@ -49,7 +51,11 @@ const VideoComments = ({
 				) : (
 					<div className="flex flex-col gap-6 mt-4 mb-4 lg:mb-0">
 						{comments.map((comment) => (
-							<CommentWrapper comment={comment} key={comment.id} />
+							<CommentWrapper
+								comment={comment}
+								key={comment.id}
+								deleteComment={deleteComment}
+							/>
 						))}
 					</div>
 				)}

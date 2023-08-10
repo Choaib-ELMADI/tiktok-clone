@@ -184,6 +184,14 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 		}
 	};
 
+	const deleteComment = async (commentId: string) => {
+		"use server";
+
+		await prisma.comment.delete({
+			where: { id: commentId },
+		});
+	};
+
 	return (
 		<div className="fixed top-0 left-0 w-full h-screen bg-white dark:bg-black z-50 overflow-auto">
 			<div className="grid grid-cols-1 lg:grid-cols-[auto_500px]">
@@ -223,7 +231,11 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 						/>
 					</div>
 					<VideoLink />
-					<VideoComments comments={comments} postComment={postComment} />
+					<VideoComments
+						comments={comments}
+						postComment={postComment}
+						deleteComment={deleteComment}
+					/>
 				</div>
 			</div>
 		</div>
