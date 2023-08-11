@@ -192,6 +192,14 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 		});
 	};
 
+	const followingState = await prisma.following.findFirst({
+		where: {
+			userLink: user?.emailAddresses[0].emailAddress
+				.split("@")[0]
+				.replaceAll(".", ""),
+		},
+	});
+
 	return (
 		<div className="fixed top-0 left-0 w-full h-screen bg-white dark:bg-black z-50 overflow-auto">
 			<div className="grid grid-cols-1 lg:grid-cols-[auto_500px]">
@@ -202,7 +210,7 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 					</video>
 				</div>
 				<div className="h-max lg:h-screen overflow-scroll pt-6">
-					<VideoHeader video={video} />
+					<VideoHeader video={video} followingState={followingState!} />
 					<div className="flex items-center gap-4 my-2 px-2 xs:px-6">
 						<LikeVideo
 							video={video}

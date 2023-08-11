@@ -57,3 +57,11 @@ model Comment {
 
   @@map("comments")
 }
+
+model Following {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userLink  String
+  following String[]
+
+  @@map("followings")
+}

@@ -4,13 +4,14 @@ import { Music } from "lucide-react";
 import Link from "next/link";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/db/prisma";
 import Comment from "./video-comment";
 import LikeVideo from "./video-like";
+import FollowBtn from "./follow-btn";
 import Share from "./video-share";
 import { cn } from "@/lib/utils";
 import Save from "./video-save";
+import { followUser } from "@/lib/actions";
 
 interface VideoProps {
 	video: Video;
@@ -147,6 +148,14 @@ const Video = async ({ video }: VideoProps) => {
 		}
 	};
 
+	const followingState = await prisma.following.findFirst({
+		where: {
+			userLink: user?.emailAddresses[0].emailAddress
+				.split("@")[0]
+				.replaceAll(".", ""),
+		},
+	});
+
 	return (
 		<div className="pb-4 border-b border-border max-w-[700px] w-full">
 			<div className="flex gap-2">
@@ -173,9 +182,12 @@ const Video = async ({ video }: VideoProps) => {
 				{user?.emailAddresses[0].emailAddress
 					.split("@")[0]
 					.replaceAll(".", "") !== video.userLink && (
-					<Button variant="outline" size="lg" className="ml-auto">
-						Follow
-					</Button>
+					<FollowBtn
+						className="ml-auto"
+						newUserLink={video.userLink}
+						followUser={followUser}
+						followingState={followingState!}
+					/>
 				)}
 			</div>
 			<div className="mt-2 xs:mt-0 xd:ml-[60px] mb-2">

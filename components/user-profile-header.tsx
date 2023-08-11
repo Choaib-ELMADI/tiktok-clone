@@ -1,10 +1,19 @@
 import { MoreHorizontal, Share2 } from "lucide-react";
-import { Video } from "@prisma/client";
+import { Following, Video } from "@prisma/client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { followUser } from "@/lib/actions";
+import FollowBtn from "./follow-btn";
 
-const ProfileHeader = ({ video, likes }: { video: Video; likes: number }) => {
+const ProfileHeader = ({
+	video,
+	likes,
+	followingState,
+}: {
+	video: Video;
+	likes: number;
+	followingState: Following;
+}) => {
 	return (
 		<div className="py-4">
 			<div className="flex gap-4 max-w-[600px] overflow-hidden mb-4">
@@ -20,13 +29,11 @@ const ProfileHeader = ({ video, likes }: { video: Video; likes: number }) => {
 						{video.userLink}
 					</h1>
 					<h1 className="font-bold text-[1rem] xs:text-xl">{video.userName}</h1>
-					<Button
-						variant="destructive"
-						size="lg"
-						className="text-[.85rem] uppercase"
-					>
-						Follow
-					</Button>
+					<FollowBtn
+						newUserLink={video.userLink}
+						followUser={followUser}
+						followingState={followingState}
+					/>
 				</div>
 				<div className="ml-auto flex flex-col md:flex-row gap-4">
 					<Share2 className="cursor-pointer" />

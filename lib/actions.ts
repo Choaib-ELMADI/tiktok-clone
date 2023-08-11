@@ -43,3 +43,42 @@ export const publishVideo = async (
 		},
 	});
 };
+
+export const followUser = async (userLink: string, newUserLink: string) => {
+	"use server";
+
+	const followingState = await prisma.following.findFirst({
+		where: { userLink },
+	});
+
+	if (followingState) {
+		if (followingState.following.includes(newUserLink)) {
+			await prisma.following.updateMany({
+				where: {
+					userLink,
+				},
+				data: {
+					following: [
+						...followingState.following.filter((user) => user !== newUserLink),
+					],
+				},
+			});
+		} else {
+			await prisma.following.updateMany({
+				where: {
+					userLink,
+				},
+				data: {
+					following: [...followingState.following, newUserLink],
+				},
+			});
+		}
+	} else {
+		await prisma.following.create({
+			data: {
+				userLink,
+				following: [newUserLink],
+			},
+		});
+	}
+};

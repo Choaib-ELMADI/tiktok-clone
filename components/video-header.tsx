@@ -1,13 +1,20 @@
+import { Following, Video } from "@prisma/client";
 import { currentUser } from "@clerk/nextjs";
-import { Video } from "@prisma/client";
 import { Music } from "lucide-react";
 import Link from "next/link";
 import moment from "moment";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { followUser } from "@/lib/actions";
+import FollowBtn from "./follow-btn";
 
-const VideoHeader = async ({ video }: { video: Video }) => {
+const VideoHeader = async ({
+	video,
+	followingState,
+}: {
+	video: Video;
+	followingState: Following;
+}) => {
 	const user = await currentUser();
 
 	return (
@@ -49,9 +56,12 @@ const VideoHeader = async ({ video }: { video: Video }) => {
 				{user?.emailAddresses[0].emailAddress
 					.split("@")[0]
 					.replaceAll(".", "") !== video.userLink && (
-					<Button variant="outline" size="lg" className="ml-auto">
-						Follow
-					</Button>
+					<FollowBtn
+						className="ml-auto"
+						newUserLink={video.userLink}
+						followUser={followUser}
+						followingState={followingState}
+					/>
 				)}
 			</div>
 			<p className="text-[1rem] my-[6px] truncate">

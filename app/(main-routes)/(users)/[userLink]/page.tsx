@@ -103,6 +103,14 @@ export default async function UserPage({
 		});
 	};
 
+	const followingState = await prisma.following.findFirst({
+		where: {
+			userLink: user?.emailAddresses[0].emailAddress
+				.split("@")[0]
+				.replaceAll(".", ""),
+		},
+	});
+
 	return (
 		<div className="p-2 xs:p-4">
 			{(!video &&
@@ -133,7 +141,11 @@ export default async function UserPage({
 				</>
 			) : video ? (
 				<>
-					<ProfileHeader video={video} likes={likes} />
+					<ProfileHeader
+						video={video}
+						likes={likes}
+						followingState={followingState!}
+					/>
 					<ProfileBody videos={allUserVideos} />
 				</>
 			) : (
