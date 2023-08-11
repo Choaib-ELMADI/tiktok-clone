@@ -53,7 +53,7 @@ const ProfileHeader = ({ video, likes }: { video: Video; likes: number }) => {
 					{likes > 1 ? "Likes" : "Like"}
 				</p>
 			</div>
-			<p className="">description or bio</p>
+			<p className="text-[1rem] mt-2 font-semibold">{video.userBio}</p>
 		</div>
 	);
 };

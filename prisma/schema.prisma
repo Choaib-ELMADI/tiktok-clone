@@ -15,6 +15,7 @@ model Video {
   likes               Int
   saves               Int
   userName            String
+  userBio             String
   userId              String
   userEmailAddress    String
   userProfileImageUrl String

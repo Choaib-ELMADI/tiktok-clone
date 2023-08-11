@@ -34,6 +34,7 @@ export const publishVideo = async (
 			saves: 0,
 			source: video,
 			userName: `${userFirstName} ${userLastName}`,
+			userBio: "Description or bio",
 			userId,
 			userEmailAddress,
 			userProfileImageUrl,

@@ -17,6 +17,14 @@ export default async function UserPage({
 }) {
 	const user = await currentUser();
 
+	const videoForCurrentUser = await prisma.video.findFirst({
+		where: {
+			userLink: user?.emailAddresses[0].emailAddress
+				.split("@")[0]
+				.replaceAll(".", ""),
+		},
+	});
+
 	const video = await prisma.video.findFirst({
 		where: { userLink: params.userLink.replaceAll("%40", "") },
 	});
@@ -80,6 +88,21 @@ export default async function UserPage({
 	);
 	const savedVideos = await Promise.all(savedVideosPromiseArray);
 
+	const updateUser = async (
+		userLink: string,
+		userName: string,
+		userBio: string
+	) => {
+		"use server";
+
+		await prisma.video.updateMany({
+			where: {
+				userLink,
+			},
+			data: { userName, userBio },
+		});
+	};
+
 	return (
 		<div className="p-2 xs:p-4">
 			{(!video &&
@@ -94,7 +117,12 @@ export default async function UserPage({
 						.split("@")[0]
 						.replaceAll(".", "")) ? (
 				<>
-					<CurrentUserHeader user={user} likes={currentUserLikes} />
+					<CurrentUserHeader
+						video={videoForCurrentUser!}
+						user={user}
+						likes={currentUserLikes}
+						updateUser={updateUser}
+					/>
 					<CurrentUserBody
 						videos={allCurrentUserVideos}
 						//@ts-ignore
