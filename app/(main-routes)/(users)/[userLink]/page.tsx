@@ -110,9 +110,24 @@ export default async function UserPage({
 				.replaceAll(".", ""),
 		},
 	});
+	const followersState = await prisma.following.findMany({
+		where: {
+			following: {
+				has: user?.emailAddresses[0].emailAddress
+					.split("@")[0]
+					.replaceAll(".", ""),
+			},
+		},
+	});
+	console.log("_____Followers State_____");
+	console.log(followersState);
+	console.log("_____Followers State_____");
 
 	const userFollowingState = await prisma.following.findFirst({
 		where: { userLink: params.userLink.replaceAll("%40", "") },
+	});
+	const userFollowersState = await prisma.following.findMany({
+		where: { following: { has: params.userLink.replaceAll("%40", "") } },
 	});
 
 	return (
@@ -135,6 +150,8 @@ export default async function UserPage({
 						likes={currentUserLikes}
 						updateUser={updateUser}
 						followingState={followingState!}
+						//@ts-ignore
+						followersState={followersState!}
 					/>
 					<CurrentUserBody
 						videos={allCurrentUserVideos}
@@ -151,6 +168,8 @@ export default async function UserPage({
 						likes={likes}
 						followingState={followingState!}
 						userFollowingState={userFollowingState!}
+						//@ts-ignore
+						userFollowersState={userFollowersState!}
 					/>
 					<ProfileBody videos={allUserVideos} />
 				</>

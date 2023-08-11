@@ -10,11 +10,13 @@ const ProfileHeader = ({
 	likes,
 	followingState,
 	userFollowingState,
+	userFollowersState,
 }: {
 	video: Video;
 	likes: number;
 	followingState: Following;
 	userFollowingState: Following;
+	userFollowersState: Following[];
 }) => {
 	return (
 		<div className="py-4">
@@ -51,7 +53,7 @@ const ProfileHeader = ({
 				</p>
 				<p className="text-[1rem] text-light_gray dark:text-light_white">
 					<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
-						0
+						{userFollowersState?.length || 0}
 					</span>{" "}
 					Followers
 				</p>

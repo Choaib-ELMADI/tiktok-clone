@@ -16,12 +16,14 @@ const CurrentUserHeader = ({
 	likes,
 	updateUser,
 	followingState,
+	followersState,
 }: {
 	video: Video;
 	user: any;
 	likes: number;
 	updateUser: (l: string, n: string, b: string) => void;
 	followingState: Following;
+	followersState: Following[];
 }) => {
 	const [viewEditProfile, setViewEditProfile] = useState(false);
 	const [userName, setUserName] = useState(video.userName);
@@ -107,7 +109,7 @@ const CurrentUserHeader = ({
 					</p>
 					<p className="text-[1rem] text-light_gray dark:text-light_white">
 						<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
-							0
+							{followersState?.length || 0}
 						</span>{" "}
 						Followers
 					</p>
