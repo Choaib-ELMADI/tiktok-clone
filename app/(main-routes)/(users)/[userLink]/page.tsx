@@ -111,6 +111,10 @@ export default async function UserPage({
 		},
 	});
 
+	const userFollowingState = await prisma.following.findFirst({
+		where: { userLink: params.userLink.replaceAll("%40", "") },
+	});
+
 	return (
 		<div className="p-2 xs:p-4">
 			{(!video &&
@@ -130,6 +134,7 @@ export default async function UserPage({
 						user={user}
 						likes={currentUserLikes}
 						updateUser={updateUser}
+						followingState={followingState!}
 					/>
 					<CurrentUserBody
 						videos={allCurrentUserVideos}
@@ -145,6 +150,7 @@ export default async function UserPage({
 						video={video}
 						likes={likes}
 						followingState={followingState!}
+						userFollowingState={userFollowingState!}
 					/>
 					<ProfileBody videos={allUserVideos} />
 				</>

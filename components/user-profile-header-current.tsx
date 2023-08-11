@@ -1,10 +1,10 @@
 "use client";
 
 import { Edit, MoreHorizontal, Share2, X } from "lucide-react";
+import { Following, Video } from "@prisma/client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { Video } from "@prisma/client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -15,11 +15,13 @@ const CurrentUserHeader = ({
 	user,
 	likes,
 	updateUser,
+	followingState,
 }: {
 	video: Video;
 	user: any;
 	likes: number;
 	updateUser: (l: string, n: string, b: string) => void;
+	followingState: Following;
 }) => {
 	const [viewEditProfile, setViewEditProfile] = useState(false);
 	const [userName, setUserName] = useState(video.userName);
@@ -99,7 +101,7 @@ const CurrentUserHeader = ({
 				<div className="flex gap-4">
 					<p className="text-[1rem] text-light_gray dark:text-light_white">
 						<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
-							0
+							{followingState?.following.length || 0}
 						</span>{" "}
 						Following
 					</p>

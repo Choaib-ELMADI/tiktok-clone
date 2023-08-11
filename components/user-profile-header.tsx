@@ -9,10 +9,12 @@ const ProfileHeader = ({
 	video,
 	likes,
 	followingState,
+	userFollowingState,
 }: {
 	video: Video;
 	likes: number;
 	followingState: Following;
+	userFollowingState: Following;
 }) => {
 	return (
 		<div className="py-4">
@@ -43,7 +45,7 @@ const ProfileHeader = ({
 			<div className="flex gap-4">
 				<p className="text-[1rem] text-light_gray dark:text-light_white">
 					<span className="text-[1.1rem] font-extrabold text-black dark:text-white">
-						0
+						{userFollowingState?.following.length || 0}
 					</span>{" "}
 					Following
 				</p>

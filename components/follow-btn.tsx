@@ -23,6 +23,18 @@ const FollowBtn = ({
 	const router = useRouter();
 
 	const handleFollowUser = () => {
+		if (!user) {
+			toast.error(
+				"Sign up to follow creators, like videos, and view comments.",
+				{
+					duration: 3000,
+					className: "text-center text-sm",
+				}
+			);
+			router.push("/sign-up");
+			return;
+		}
+
 		try {
 			followUser(
 				user?.emailAddresses[0].emailAddress.split("@")[0].replaceAll(".", "")!,
@@ -41,20 +53,20 @@ const FollowBtn = ({
 	return (
 		<Button
 			variant={
-				followingState && followingState.following.includes(newUserLink)
+				user && followingState && followingState.following.includes(newUserLink)
 					? "default"
 					: "outline"
 			}
 			size="lg"
 			className={cn(
 				className,
-				followingState && followingState.following.includes(newUserLink)
+				user && followingState && followingState.following.includes(newUserLink)
 					? "text-white hover:text-black dark:hover:text-white"
 					: ""
 			)}
 			onClick={handleFollowUser}
 		>
-			{followingState && followingState.following.includes(newUserLink)
+			{user && followingState && followingState.following.includes(newUserLink)
 				? "Following"
 				: "Follow"}
 		</Button>
