@@ -69,12 +69,20 @@ const Save = ({
 				disabled={disabled}
 			>
 				<Image
-					src={state ? "/saved.svg" : "/not-saved.svg"}
+					src={state ? "/saved.svg" : "/not-saved-white.svg"}
 					alt="Save Icon"
 					width={20}
 					height={20}
 					draggable="false"
-					className="group-active:scale-[1.4] transition h-5 w-5 xm:w-6 xm:h-6"
+					className="hidden dark:block group-active:scale-[1.4] transition h-5 w-5 xm:w-6 xm:h-6"
+				/>
+				<Image
+					src={state ? "/saved.svg" : "/not-saved-black.svg"}
+					alt="Save Icon"
+					width={20}
+					height={20}
+					draggable="false"
+					className="block dark:hidden group-active:scale-[1.4] transition h-5 w-5 xm:w-6 xm:h-6"
 				/>
 			</button>
 			<span

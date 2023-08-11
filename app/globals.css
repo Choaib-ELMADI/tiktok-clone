@@ -24,7 +24,7 @@
 
 		--radius: 0.5rem;
 		--border: var(--black);
-		--thumb-bg: rgba(0, 0, 0, .4);
+		--thumb-bg: rgba(0, 0, 0, .2);
 	}
 
 	.dark {
@@ -46,7 +46,7 @@
 		--secondary: var(--light_gray);
 
 		--border: var(--light_gray);
-		--thumb-bg: rgba(255, 255, 255, .4);
+		--thumb-bg: rgba(255, 255, 255, .2);
 	}
 }
 
@@ -59,14 +59,14 @@
 @layer utilities {
 	@variants responsive {
 		.show-scrollbar::-webkit-scrollbar {
-			width: 5px;
-			height: 5px;
+			width: 4px;
+			height: 4px;
 			background: transparent;
 		}
 
 		.show-scrollbar::-webkit-scrollbar-thumb {
-			width: 5px;
-			height: 5px;
+			width: 4px;
+			height: 4px;
 			background: transparent;
 		}
 
@@ -102,7 +102,7 @@
 
 *::-webkit-scrollbar-thumb {
 	background: transparent;
-	border-radius: 10px;
+	border-radius: 6px;
 }
 
 *::-webkit-scrollbar-corner {
