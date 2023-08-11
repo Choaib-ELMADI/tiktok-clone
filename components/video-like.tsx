@@ -25,7 +25,6 @@ const LikeVideo = ({
 	text,
 }: LikeVideoProps) => {
 	const [disabled, setDisabled] = useState(false);
-	const [liked, setLiked] = useState(false);
 	const [state, setState] = useState();
 	const router = useRouter();
 
@@ -51,8 +50,6 @@ const LikeVideo = ({
 			return;
 		}
 
-		setLiked(!liked);
-
 		try {
 			await likeVideo();
 			const videoLikeState = await likeState();
@@ -75,9 +72,10 @@ const LikeVideo = ({
 				<Heart
 					className={cn(
 						"h-5 w-5 xm:w-6 xm:h-6 dark:fill-light_white fill-light_gray dark:text-light_white text-light_gray group-active:scale-[1.4] transition",
-						state || liked
-							? "dark:fill-red-600 fill-red-600 dark:text-red-600 text-red-600"
-							: ""
+						state &&
+							"dark:fill-red-600 fill-red-600 dark:text-red-600 text-red-600",
+						!state &&
+							"dark:fill-light_white fill-light_gray dark:text-light_white text-light_gray"
 					)}
 				/>
 			</button>

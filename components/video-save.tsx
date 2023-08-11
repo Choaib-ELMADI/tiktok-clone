@@ -24,7 +24,6 @@ const Save = ({
 	saveState: () => any;
 }) => {
 	const [disabled, setDisabled] = useState(false);
-	const [saved, setSaved] = useState(false);
 	const [state, setState] = useState();
 	const router = useRouter();
 
@@ -50,8 +49,6 @@ const Save = ({
 			return;
 		}
 
-		setSaved(!saved);
-
 		try {
 			await saveVideo();
 			const videoSaveState = await saveState();
@@ -72,7 +69,7 @@ const Save = ({
 				disabled={disabled}
 			>
 				<Image
-					src={state || saved ? "/saved.svg" : "/not-saved.svg"}
+					src={state ? "/saved.svg" : "/not-saved.svg"}
 					alt="Save Icon"
 					width={20}
 					height={20}
