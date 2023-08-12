@@ -65,6 +65,7 @@ const CurrentUserBody = ({
 											.filter((i) => i !== "")
 											.map((hash: string) => (
 												<Link
+													key={hash}
 													href={`/tags/${hash}`}
 													className="text-blue-500 dark:text-brand_2 hover:underline"
 												>
@@ -92,7 +93,7 @@ const CurrentUserBody = ({
 						<div className="flex flex-col justify-center items-center gap-1 px-4 py-32">
 							<Lock className="w-[80px] h-[80px] text-light_gray dark:text-light_white mb-3" />
 							<h1 className="font-bold text-xl text-dark dark:text-white">
-								You're liked videos will be shown here
+								You&apos;re liked videos will be shown here
 							</h1>
 						</div>
 					) : (
@@ -114,6 +115,7 @@ const CurrentUserBody = ({
 											.filter((i) => i !== "")
 											.map((hash: string) => (
 												<Link
+													key={hash}
 													href={`/tags/${hash}`}
 													className="text-blue-500 dark:text-brand_2 hover:underline"
 												>
@@ -130,7 +132,7 @@ const CurrentUserBody = ({
 					<div className="flex flex-col justify-center items-center gap-1 px-4 py-32">
 						<Lock className="w-[80px] h-[80px] text-light_gray dark:text-light_white mb-3" />
 						<h1 className="font-bold text-xl text-dark dark:text-white">
-							You're favorite videos will be shown here
+							You&apos;re favorite videos will be shown here
 						</h1>
 					</div>
 				) : (
@@ -152,6 +154,7 @@ const CurrentUserBody = ({
 										.filter((i) => i !== "")
 										.map((hash: string) => (
 											<Link
+												key={hash}
 												href={`/tags/${hash}`}
 												className="text-blue-500 dark:text-brand_2 hover:underline"
 											>

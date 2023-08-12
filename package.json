@@ -24,6 +24,7 @@
 		"class-variance-authority": "^0.7.0",
 		"cloudinary": "^1.40.0",
 		"clsx": "^2.0.0",
+		"encoding": "^0.1.13",
 		"eslint-config-next": "13.4.12",
 		"firebase": "^10.1.0",
 		"lucide-react": "^0.263.1",

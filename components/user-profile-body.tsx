@@ -57,6 +57,7 @@ const ProfileBody = ({ videos }: { videos: Video[] }) => {
 											.filter((i) => i !== "")
 											.map((hash: string) => (
 												<Link
+													key={hash}
 													href={`/tags/${hash}`}
 													className="text-blue-500 dark:text-brand_2 hover:underline"
 												>
@@ -83,7 +84,7 @@ const ProfileBody = ({ videos }: { videos: Video[] }) => {
 					<div className="flex flex-col justify-center items-center gap-1 px-4 py-32">
 						<Lock className="w-[80px] h-[80px] text-light_gray dark:text-light_white mb-3" />
 						<h1 className="font-bold text-xl text-dark dark:text-white">
-							This user's liked videos are private
+							This user&apos;s liked videos are private
 						</h1>
 						<p className="text-[1rem] text-light_gray dark:text-light_white font-semibold">
 							Videos liked by {videos[0].userLink} are currently hidden
@@ -93,7 +94,7 @@ const ProfileBody = ({ videos }: { videos: Video[] }) => {
 					<div className="flex flex-col justify-center items-center gap-1 px-4 py-32">
 						<Lock className="w-[80px] h-[80px] text-light_gray dark:text-light_white mb-3" />
 						<h1 className="font-bold text-xl text-dark dark:text-white">
-							This user's favorite videos are private
+							This user&apos;s favorite videos are private
 						</h1>
 						<p className="text-[1rem] text-light_gray dark:text-light_white font-semibold">
 							Favorite videos of {videos[0].userLink} are currently hidden

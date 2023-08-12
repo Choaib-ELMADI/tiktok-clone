@@ -18,7 +18,7 @@ export default function NotFoundPage() {
 				/>
 				<span className="text-[6rem] md:text-[12rem]">4</span>
 			</div>
-			<p className="text-light_gray opacity-70">Couldn't find this page</p>
+			<p className="text-light_gray opacity-70">Couldn&apos;t find this page</p>
 			<h1 className="text-xl font-extrabold my-4">
 				Check out more trending videos on TikTok
 			</h1>
