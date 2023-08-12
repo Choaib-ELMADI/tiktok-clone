@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { Comment } from "@prisma/client";
+import { Comment, Video } from "@prisma/client";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
@@ -8,9 +8,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Trash2 } from "lucide-react";
 
 const CommentWrapper = ({
+	video,
 	comment,
 	deleteComment,
 }: {
+	video: Video;
 	comment: Comment;
 	deleteComment: (id: string) => void;
 }) => {
@@ -42,12 +44,22 @@ const CommentWrapper = ({
 				</Avatar>
 			</Link>
 			<div className="flex flex-col gap-[2px] flex-1">
-				<Link
-					href={`/@${comment.userLink}`}
-					className="hover:underline text-[.9rem] font-semibold tracking-wider"
-				>
-					{comment.userName}
-				</Link>
+				<div className="flex items-center gap-1">
+					<Link
+						href={`/@${comment.userLink}`}
+						className="hover:underline text-[.9rem] font-semibold tracking-wider"
+					>
+						{comment.userName}
+					</Link>
+					{comment.userLink === video.userLink && (
+						<>
+							<span className="w-1 h-1 rounded-full bg-black dark:bg-white" />
+							<p className="text-[.9rem] text-brand_1 leading-[1.2rem] font-semibold tracking-wider">
+								Creator
+							</p>
+						</>
+					)}
+				</div>
 				<p className="leading-[1.2rem] font-medium">{comment.comment}</p>
 				<p>
 					{new Date(comment.createdAt).getMonth() + 1}

@@ -240,6 +240,7 @@ const VideoPage = async ({ params }: { params: { id: string } }) => {
 					</div>
 					<VideoLink />
 					<VideoComments
+						video={video}
 						comments={comments}
 						postComment={postComment}
 						deleteComment={deleteComment}
