@@ -60,7 +60,7 @@ model Comment {
 
 model Following {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userLink  String
+  userLink  String   @unique
   following String[]
 
   @@map("followings")

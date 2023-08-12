@@ -17,6 +17,9 @@ export default async function Home() {
 							<div className="w-[200px] bg-light_white dark:bg-light_gray h-5 rounded-lg" />
 						</div>
 					</div>
+					<p className="text-xl mt-12 opacity-90 w-full max-w-[500px] text-center">
+						There is no available videos at the moment. Start by adding one!
+					</p>
 				</div>
 			)}
 			{videos.map((video) => (
