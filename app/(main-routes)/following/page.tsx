@@ -1,10 +1,15 @@
 import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 import Video from "@/components/video-component";
 import { prisma } from "@/lib/db/prisma";
 
 export default async function FollowingPage() {
 	const user = await currentUser();
+
+	if (!user) {
+		redirect("/sign-up");
+	}
 
 	const followings = await prisma.following.findUnique({
 		where: {

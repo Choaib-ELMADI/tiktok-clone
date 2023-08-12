@@ -16,6 +16,9 @@ export default async function UserPage({
 	params: { userLink: string };
 }) {
 	const user = await currentUser();
+	if (!user) {
+		redirect("/sign-up");
+	}
 
 	const videoForCurrentUser = await prisma.video.findFirst({
 		where: {
