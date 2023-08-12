@@ -26,8 +26,12 @@ const CurrentUserHeader = ({
 	followersState: Following[];
 }) => {
 	const [viewEditProfile, setViewEditProfile] = useState(false);
-	const [userName, setUserName] = useState(video.userName);
-	const [userBio, setUserBio] = useState(video.userBio);
+	const [userName, setUserName] = useState(
+		video ? video.userName : `${user?.firstName} ${user?.lastName}`
+	);
+	const [userBio, setUserBio] = useState(
+		video ? video.userBio : "Description or bio"
+	);
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
 
@@ -82,9 +86,7 @@ const CurrentUserHeader = ({
 								.split("@")[0]
 								.replaceAll(".", "")}
 						</h1>
-						<h1 className="font-bold text-[1rem] xs:text-xl">
-							{video.userName}
-						</h1>
+						<h1 className="font-bold text-[1rem] xs:text-xl">{userName}</h1>
 						<Button
 							variant="secondary"
 							size="lg"
@@ -120,7 +122,7 @@ const CurrentUserHeader = ({
 						{likes > 1 ? "Likes" : "Like"}
 					</p>
 				</div>
-				<p className="text-[1rem] mt-2 font-semibold">{video.userBio}</p>
+				<p className="text-[1rem] mt-2 font-semibold">{userBio}</p>
 			</div>
 			{viewEditProfile && (
 				<div className="fixed top-0 left-0 z-50 w-full min-h-screen overflow-scroll bg-[rgba(0,_0,_0,_0.4)] flex items-center justify-center px-4">
