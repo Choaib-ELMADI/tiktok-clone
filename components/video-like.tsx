@@ -33,7 +33,7 @@ const LikeVideo = ({
 			const videoLikeState = await likeState();
 			setState(videoLikeState);
 		})();
-	}, [user]);
+	}, [user, likeState]);
 
 	const handleLikeVideo = async () => {
 		setDisabled(true);

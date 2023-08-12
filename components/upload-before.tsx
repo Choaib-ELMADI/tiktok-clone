@@ -15,18 +15,21 @@ const BeforeUpload = ({
 	setVideo,
 	handleChange,
 }: BeforeUploadProps) => {
-	const onDrop = useCallback((acceptedFiles: File[]) => {
-		if (loading) return;
+	const onDrop = useCallback(
+		(acceptedFiles: File[]) => {
+			if (loading) return;
 
-		const file = acceptedFiles?.[0];
+			const file = acceptedFiles?.[0];
 
-		if (!file) return;
-		if (!file.type.includes("video")) {
-			return alert("Please select a video");
-		}
+			if (!file) return;
+			if (!file.type.includes("video")) {
+				return alert("Please select a video");
+			}
 
-		setVideo(file);
-	}, []);
+			setVideo(file);
+		},
+		[loading, setVideo]
+	);
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

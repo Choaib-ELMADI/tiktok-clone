@@ -32,7 +32,7 @@ const Save = ({
 			const videoSaveState = await saveState();
 			setState(videoSaveState);
 		})();
-	}, [user]);
+	}, [user, saveState]);
 
 	const handleSaveVideo = async () => {
 		setDisabled(true);
