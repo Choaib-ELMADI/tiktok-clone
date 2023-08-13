@@ -168,14 +168,14 @@ const Video = async ({ video }: VideoProps) => {
 						</AvatarFallback>
 					</Avatar>
 				</Link>
-				<div className="flex flex-col">
+				<div className="flex flex-col w-full truncate">
 					<Link
 						href={`@${video.userLink}`}
-						className="hover:underline font-semibold text-[1rem] tracking-wider truncate w-[140px] xxs:w-max"
+						className="hover:underline font-semibold text-[1rem] tracking-wider w-full truncate whitespace-nowrap"
 					>
 						{video.userLink}
 					</Link>
-					<h3 className="text-[.8rem] w-max rounded-full py-[2px] px-[6px] bg-light_white text-light_gray dark:text-light_white dark:bg-light_gray">
+					<h3 className="text-[.8rem] rounded-full py-[2px] px-[6px] bg-light_white text-light_gray dark:text-light_white dark:bg-light_gray w-full truncate whitespace-nowrap max-w-max">
 						{video.userName}
 					</h3>
 				</div>
@@ -227,7 +227,12 @@ const Video = async ({ video }: VideoProps) => {
 						<source src={video.source} />
 					</video>
 				</Link>
-				<div className="absolute bottom-12 right-1 py-1 px-2 rounded-full backdrop-blur-xl xm:p-0 xm:static xm:rounded-none xm:backdrop-blur-0 xm:bg-transparent flex flex-col gap-[3px]">
+				<div
+					className={cn(
+						"absolute right-1 p-1 xm:p-0 xm:static flex flex-col gap-[3px]",
+						video.showtimeline ? "bottom-16" : "bottom-12"
+					)}
+				>
 					<LikeVideo
 						video={video}
 						likeVideo={likeVideo}

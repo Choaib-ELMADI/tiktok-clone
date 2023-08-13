@@ -16,7 +16,7 @@ const SignOutButton = () => {
 				router.push("/");
 				router.refresh();
 			}}
-			className="w-full bg-transparent border-0"
+			className="w-full bg-transparent border-0 whitespace-nowrap"
 		>
 			Sign out
 		</Button>

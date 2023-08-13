@@ -90,8 +90,7 @@ const CurrentUserHeader = ({
 						<Button
 							variant="secondary"
 							size="lg"
-							className="text-[.85rem] uppercase border-2 border-light_gray bg-light_gray text-white flex items-center
-						hover:bg-transparent hover:border-black hover:text-black  dark:hover:border-light_white dark:hover:text-light_white"
+							className="text-[.85rem] uppercase border-2 border-light_gray bg-light_gray text-white flex items-center hover:bg-transparent hover:border-black hover:text-black  dark:hover:border-light_white dark:hover:text-light_white whitespace-nowrap w-max px-2"
 							onClick={() => setViewEditProfile(true)}
 						>
 							<Edit className="w-5 h-5 mr-3" /> Edit profile

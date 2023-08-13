@@ -40,7 +40,7 @@ const UserProfile = async () => {
 					</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent className="w-60 mt-[12px] -translate-x-4">
+			<DropdownMenuContent className="w-60 mt-[12px] -translate-x-2 xm:-translate-x-4">
 				<DropdownMenuGroup>
 					<DropdownMenuItem>
 						<Link

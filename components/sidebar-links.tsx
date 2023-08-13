@@ -50,7 +50,7 @@ const SidebarLinks = () => {
 					)}
 				>
 					<link.icon />
-					<h1 className="block xs:hidden text-[.65rem] xs:text-[1rem] md:block relative">
+					<h1 className="block xs:hidden text-[.65rem] xs:text-[1rem] md:block relative text-center whitespace-nowrap">
 						{link.label}
 					</h1>
 					{pathname !== "/explore" &&
@@ -67,26 +67,28 @@ const SidebarLinks = () => {
 						)}
 				</Link>
 			))}
-			<Link
-				href={`/@${user?.emailAddresses[0].emailAddress
-					.split("@")[0]
-					.replaceAll(".", "")}`}
-				className={cn(
-					"flex flex-col xs:hidden items-center gap-1 xs:gap-4 px-4 py-3 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
-					pathname ===
-						`/@${user?.emailAddresses[0].emailAddress
-							.split("@")[0]
-							.replaceAll(".", "")}`
-						? "text-brand_1"
-						: "",
-					montserrat.className
-				)}
-			>
-				<User />
-				<h1 className="block xs:hidden text-[.65rem] xs:text-[1rem] md:block relative">
-					Profile
-				</h1>
-			</Link>
+			{user && (
+				<Link
+					href={`/@${user?.emailAddresses[0].emailAddress
+						.split("@")[0]
+						.replaceAll(".", "")}`}
+					className={cn(
+						"flex flex-col xs:hidden items-center gap-1 xs:gap-4 px-4 py-3 hover:bg-light_white dark:hover:bg-dark_gray rounded-[4px] transition",
+						pathname ===
+							`/@${user?.emailAddresses[0].emailAddress
+								.split("@")[0]
+								.replaceAll(".", "")}`
+							? "text-brand_1"
+							: "",
+						montserrat.className
+					)}
+				>
+					<User />
+					<h1 className="block xs:hidden text-[.65rem] xs:text-[1rem] md:block relative text-center whitespace-nowrap">
+						Profile
+					</h1>
+				</Link>
+			)}
 		</>
 	);
 };

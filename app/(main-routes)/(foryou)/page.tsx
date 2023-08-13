@@ -7,7 +7,7 @@ export default async function Home() {
 	});
 
 	return (
-		<div className="flex flex-col items-center gap-8 p-4 pb-0">
+		<div className="flex flex-col items-center gap-8 p-2 xm:p-4 pb-0">
 			{videos.length === 0 && (
 				<div className="w-full max-w-[700px]">
 					<div className="flex gap-2">
