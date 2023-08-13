@@ -39,10 +39,6 @@ const ProfileHeader = ({
 						followingState={followingState}
 					/>
 				</div>
-				<div className="ml-auto flex flex-col md:flex-row gap-4">
-					<Share2 className="cursor-pointer" />
-					<MoreHorizontal className="cursor-pointer" />
-				</div>
 			</div>
 			<div className="flex gap-4">
 				<p className="text-[1rem] text-light_gray dark:text-light_white">
