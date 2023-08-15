@@ -60,7 +60,9 @@ const CommentWrapper = ({
 						</>
 					)}
 				</div>
-				<p className="leading-[1.2rem] font-medium">{comment.comment}</p>
+				<p className="leading-[1.2rem] font-medium break-all">
+					{comment.comment}
+				</p>
 				<p>
 					{new Date(comment.createdAt).getMonth() + 1}
 					{" - "}
