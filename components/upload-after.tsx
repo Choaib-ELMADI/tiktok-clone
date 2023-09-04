@@ -107,7 +107,7 @@ const AfterUpload = ({
 						{video ? (
 							<div className="relative w-full h-full flex items-center justify-center">
 								<div className="p-3 backdrop-blur-md bg-light_gray text-white z-20 absolute top-0 left-0 w-full flex items-center justify-between rounded-md">
-									<p>{video.name}</p>
+									<p className="whitespace-nowrap truncate">{video.name}</p>
 									<button
 										disabled={approved || approving}
 										onClick={handleApproveVideo}
